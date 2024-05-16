@@ -6,5 +6,6 @@ return {
       vim.cmd.colorscheme("tokyonight-night") -- Default colorscheme
       vim.cmd.hi("Comment gui=none")
     end,
-  }
+  },
+  { "xiyaowong/transparent.nvim" },
 }
