@@ -23,10 +23,3 @@ fi
 
 export STARSHIP_CONFIG=~/.config/starship/starship.toml
 
-# pnpm
-export PNPM_HOME="/home/leo/.local/share/pnpm"
-case ":$PATH:" in
-  *":$PNPM_HOME:"*) ;;
-  *) export PATH="$PNPM_HOME:$PATH" ;;
-esac
-# pnpm end

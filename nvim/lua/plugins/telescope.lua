@@ -61,9 +61,6 @@ return {
       vim.keymap.set("n", "<leader>gb", builtin.git_branches, { desc = "[G]it [B]ranches"})
       vim.keymap.set("n", "<leader><leader>", builtin.buffers, { desc = "[ ] Find existing buffers" })
 
-      vim.keymap.set("n", "<leader>o", ":Oil<CR>", { desc = "Open [O]il"})
-      vim.keymap.set("n", "<leader>g", ":Neogit<CR>", { desc = "Open Neo[g]it"})
-
       -- Slightly advanced example of overriding default behavior and theme
       vim.keymap.set("n", "<leader>/", function()
         -- You can pass additional configuration to Telescope to change the theme, layout, etc.

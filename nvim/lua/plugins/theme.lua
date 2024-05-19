@@ -4,8 +4,14 @@ return {
     priority = 1000,
     init = function()
       vim.cmd.colorscheme("tokyonight-night") -- Default colorscheme
-      vim.cmd.hi("Comment gui=none")
+      vim.cmd.hi("Comment gui=none") -- Disable the default gui on launch
     end,
+  },
+  { -- Highlight todo, notes, etc in comments
+    "folke/todo-comments.nvim",
+    event = "VimEnter",
+    dependencies = { "nvim-lua/plenary.nvim" },
+    opts = { signs = false },
   },
   { "xiyaowong/transparent.nvim" },
 }

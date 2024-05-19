@@ -1,5 +1,5 @@
 return {
-  { -- Autoformat
+  { -- Autoformat your document
     "stevearc/conform.nvim",
     lazy = false,
     keys = {
