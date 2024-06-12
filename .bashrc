@@ -10,6 +10,7 @@ alias sudo='doas'
 alias yay='yay --sudo doas --sudoflags -- --save'
 alias vim='nvim'
 alias neofetch='fastfetch'
+alias open='xdg-open'
 
 # Eval some apps
 eval "$(zoxide init bash)"

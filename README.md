@@ -11,6 +11,3 @@ ln -sf ~/Documents/dotfiles/.bashrc ~/.bashrc
 source ~/.bashrc
 ```
 
-# TODO
-
-Try NixOS and upload `configurations.nix` for a fully portable & replicable system.
