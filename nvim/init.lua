@@ -11,6 +11,12 @@ vim.g.maplocalleader = " "
 -- Nerd fonts support
 vim.g.have_nerd_font = true
 
+-- Disable external providers
+vim.g.loaded_python3_provider = 0
+vim.g.loaded_ruby_provider = 0
+vim.g.loaded_node_provider = 0
+vim.g.loaded_perl_provider = 0
+
 -- [[ Install `lazy.nvim` plugin manager ]]
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
@@ -21,6 +27,9 @@ vim.opt.rtp:prepend(lazypath)
 
 -- Set up lazy and auto import the plugins folder
 require("lazy").setup("plugins", {
+  rocks = {
+    enabled = false,
+  },
   change_detection = {
     notify = false,
   },

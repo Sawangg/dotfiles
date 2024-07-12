@@ -23,7 +23,7 @@ map("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostic [Q]ui
 map("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
 
 -- Toggle background transparency
-vim.api.nvim_set_keymap("n", "TT", ":TransparentToggle<CR>", { noremap=true })
+vim.api.nvim_set_keymap("n", "TT", ":TransparentToggle<CR>", { desc= "Toggle [T]ransparency", noremap=true })
 
 -- Disable arrow keys
 map("n", "<left>", '<cmd>echo "Use h to move!!"<CR>')
