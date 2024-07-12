@@ -1,6 +1,8 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
+complete -cf doas
+
 # Aliases
 alias e='exit'
 alias ls='ls --color=auto'
@@ -17,14 +19,9 @@ eval "$(zoxide init bash)"
 eval "$(starship init bash)"
 #eval "$(ssh-agent)"
 
-# Start tmux
-# if [ -z "$TMUX" ]; then
-#     tmux new-session
-# fi
-
+# Env variables
 export STARSHIP_CONFIG=~/.config/starship/starship.toml
-
-
+export EDITOR=nvim
 # pnpm
 export PNPM_HOME="/home/leo/.local/share/pnpm"
 case ":$PATH:" in
