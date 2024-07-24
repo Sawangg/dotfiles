@@ -13,6 +13,7 @@ alias yay='yay --sudo doas --sudoflags -- --save'
 alias vim='nvim'
 alias neofetch='fastfetch'
 alias open='xdg-open'
+alias k='kubectl'
 
 # Eval some apps
 eval "$(zoxide init bash)"
