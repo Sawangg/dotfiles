@@ -1,8 +1,3 @@
--- Import configs
-require("keymaps")
-require("options")
-require("autocmds")
-
 -- Set <space> as the leader key
 --  See `:help mapleader`
 vim.g.mapleader = " "
@@ -17,7 +12,7 @@ vim.g.loaded_ruby_provider = 0
 vim.g.loaded_node_provider = 0
 vim.g.loaded_perl_provider = 0
 
--- [[ Install `lazy.nvim` plugin manager ]]
+-- Install `lazy.nvim` plugin manager
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
   local lazyrepo = "https://github.com/folke/lazy.nvim.git"
@@ -35,3 +30,7 @@ require("lazy").setup("plugins", {
   },
 })
 
+-- Then import configs
+require("keymaps")
+require("options")
+require("autocmds")
