@@ -1,0 +1,4 @@
+-v
+--target=~/.config
+--ignore=.stowrc
+--ignore=.bashrc
