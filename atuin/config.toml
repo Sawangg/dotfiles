@@ -1,11 +1,14 @@
 sync_address = "http://192.168.1.82"
 sync_frequency = "1m"
 
+style = "compact"
+
 history_filter = [
    "^cd",
    "^ls",
    "^exit",
-   "^e"
+   "^e",
+   "^clear"
 ]
 
 enter_accept = true
