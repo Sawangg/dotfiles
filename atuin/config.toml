@@ -5,10 +5,13 @@ style = "compact"
 
 history_filter = [
    "^cd",
+   "^z",
    "^ls",
    "^exit",
    "^e",
-   "^clear"
+   "^clear",
+   "^htop",
+   "^zellij"
 ]
 
 enter_accept = true
