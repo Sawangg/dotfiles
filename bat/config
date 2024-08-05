@@ -1,0 +1,13 @@
+# Run `bat --help` to get a list of all possible configuration options.
+
+# Specify desired highlighting theme. Run `bat --list-themes`for a list of all available themes
+--theme="Catppuccin Mocha"
+--style=numbers,changes,grid
+--tabs=2
+
+# Enable this to use italic text on the terminal. This is not supported on all
+# terminal emulators (like tmux, by default):
+#--italic-text=always
+
+# Uncomment the following line to disable automatic paging:
+#--paging=never
