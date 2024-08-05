@@ -69,3 +69,6 @@ o.hlsearch = true
 
 -- Set the word wrap to 120 characters
 o.textwidth = 120
+
+-- Set characters conceal for Obsidian notes
+o.conceallevel = 1
