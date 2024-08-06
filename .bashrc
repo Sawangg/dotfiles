@@ -27,8 +27,6 @@ eval "$(starship init bash)"
 
 # Env variables
 export STARSHIP_CONFIG=~/.config/starship/starship.toml
-export MANPAGER="sh -c 'col -bx | bat -l man -p'"
-export MANROFFOPT="-c"
 export EDITOR=nvim
 # pnpm
 export PNPM_HOME="/home/leo/.local/share/pnpm"
