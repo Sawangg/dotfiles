@@ -10,3 +10,9 @@ stow -R .
 ln -sf ~/Documents/dotfiles/.bashrc ~/.bashrc
 source ~/.bashrc
 ```
+
+## Automatic
+```sh
+bash <(curl -s "https://end-4.github.io/dots-hyprland-wiki/setup.sh")
+```
+
