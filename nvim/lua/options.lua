@@ -8,9 +8,6 @@ local o = vim.opt
 o.number = true
 o.relativenumber = true
 
--- Enable mouse mode, can be useful for resizing splits for example!
-o.mouse = "a"
-
 -- Don't show the mode, since it's already in the status line
 o.showmode = false
 

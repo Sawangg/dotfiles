@@ -13,7 +13,8 @@ return {
     dependencies = { "nvim-lua/plenary.nvim" },
     opts = { signs = false },
   },
-  { "xiyaowong/transparent.nvim",
+  { -- Handle background transparency
+    "xiyaowong/transparent.nvim",
     opts= {
       vim.keymap.set("n", "<leader>t", "", { desc = "Toggle [T]ransparency" })
     }

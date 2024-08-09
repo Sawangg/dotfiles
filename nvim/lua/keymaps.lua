@@ -25,12 +25,6 @@ map("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
 -- Toggle background transparency
 vim.api.nvim_set_keymap("n", "TT", ":TransparentToggle<CR>", { desc= "Toggle [T]ransparency", noremap=true })
 
--- Disable arrow keys
-map("n", "<left>", '<cmd>echo "Use h to move!!"<CR>')
-map("n", "<right>", '<cmd>echo "Use l to move!!"<CR>')
-map("n", "<up>", '<cmd>echo "Use k to move!!"<CR>')
-map("n", "<down>", '<cmd>echo "Use j to move!!"<CR>')
-
 -- Handle Azerty layout
 map({ "n", "v" }, "à", "0", { silent = true })
 map({ "n", "v" }, "&", "1", { silent = true })
