@@ -14,8 +14,6 @@ return {
           show_hidden = true,
         }
       })
-
-      vim.keymap.set("n", "<leader>o", "<CMD>Oil<CR>", { desc = "Open [O]il"})
     end
   }
 }

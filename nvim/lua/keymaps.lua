@@ -1,4 +1,4 @@
--- [[ Basic Keymaps ]]
+-- [[ Keymaps ]]
 --  See `:help vim.keymap.set()`
 
 local function map(mode, l, r, opts)
@@ -23,7 +23,10 @@ map("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostic [Q]ui
 map("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
 
 -- Toggle background transparency
-vim.api.nvim_set_keymap("n", "TT", ":TransparentToggle<CR>", { desc= "Toggle [T]ransparency", noremap=true })
+map("n", "TT", ":TransparentToggle<CR>", { desc= "Toggle [T]ransparency", noremap=true })
+
+-- Oil binds
+map("n", "<leader>o", ":Oil<CR>", { desc = "Open [O]il"})
 
 -- Handle Azerty layout
 map({ "n", "v" }, "à", "0", { silent = true })

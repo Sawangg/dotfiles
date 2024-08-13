@@ -15,8 +15,6 @@ return {
   },
   { -- Handle background transparency
     "xiyaowong/transparent.nvim",
-    opts= {
-      vim.keymap.set("n", "<leader>t", "", { desc = "Toggle [T]ransparency" })
-    }
+    opts= {},
   },
 }

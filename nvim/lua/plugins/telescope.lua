@@ -18,6 +18,7 @@ return {
     config = function()
       require("telescope").setup({
         defaults = {
+          layout_strategy = "vertical",
           file_ignore_patterns = { ".git" }
         },
         extensions = {
@@ -52,6 +53,7 @@ return {
       vim.keymap.set("n", "<leader>s.", builtin.oldfiles, { desc = '[S]earch Recent Files ("." for repeat)' })
       vim.keymap.set("n", "<leader>gb", builtin.git_branches, { desc = "[G]it [B]ranches"})
       vim.keymap.set("n", "<leader><leader>", builtin.buffers, { desc = "[ ] Find existing buffers" })
+      vim.keymap.set("n", "<leader>so", ":ObsidianQuickSwitch<CR>", { desc = "[S]earch [O]bsidian" })
 
       vim.keymap.set("n", "<leader>/", function()
         builtin.current_buffer_fuzzy_find(require("telescope.themes").get_dropdown({
