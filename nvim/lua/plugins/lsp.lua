@@ -23,7 +23,7 @@ return {
       --    an lsp (for example, opening `main.rs` is associated with `rust_analyzer`) this
       --    function will be executed to configure the current buffer
       vim.api.nvim_create_autocmd("LspAttach", {
-        group = vim.api.nvim_create_augroup("kickstart-lsp-attach", { clear = true }),
+        group = vim.api.nvim_create_augroup("lsp-attach", { clear = true }),
         callback = function(event)
           -- In this case, we create a function that lets us more easily define mappings specific
           -- for LSP related items. It sets the mode, buffer and description for us each time.
@@ -144,6 +144,18 @@ return {
                 -- { disable = { 'missing-fields' } },
               },
             },
+          },
+        },
+        yamlls = {
+          schemas = {
+            kubernetes = "*.yml",
+            ["http://json.schemastore.org/github-workflow"] = ".github/workflows/*",
+            ["http://json.schemastore.org/github-action"] = ".github/action.{yml,yaml}",
+            ["http://json.schemastore.org/ansible-stable-2.9"] = "roles/tasks/**/*.{yml,yaml}",
+            ["http://json.schemastore.org/prettierrc"] = ".prettierrc.{yml,yaml}",
+            ["http://json.schemastore.org/kustomization"] = "kustomization.{yml,yaml}",
+            ["http://json.schemastore.org/chart"] = "Chart.{yml,yaml}",
+            ["http://json.schemastore.org/circleciconfig"] = ".circleci/**/*.{yml,yaml}",
           },
         },
       }
