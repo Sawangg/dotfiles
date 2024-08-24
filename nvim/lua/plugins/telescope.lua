@@ -19,7 +19,7 @@ return {
       require("telescope").setup({
         defaults = {
           layout_strategy = "vertical",
-          file_ignore_patterns = { ".git" }
+          file_ignore_patterns = { ".git", "node_modules" },
         },
         extensions = {
           ["ui-select"] = {
