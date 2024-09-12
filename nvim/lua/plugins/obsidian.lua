@@ -34,6 +34,7 @@ return {
     },
     opts = {
       -- Path to your vaults
+      ui = { enable = { false } },
       workspaces = {
         {
           name = "main",
@@ -55,5 +56,10 @@ return {
       },
       vim.keymap.set("n", "<leader>nn", createNoteWithDefaultTemplate, { desc = "[N]ew Obsidian [N]ote" })
     }
+  },
+  { -- Better Markdown rendering
+    'MeanderingProgrammer/render-markdown.nvim',
+    opts = {},
+    dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' },
   }
 }
