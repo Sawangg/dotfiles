@@ -7,7 +7,6 @@ complete -cf doas
 
 # Aliases
 alias cat='bat'
-alias e='exit'
 alias ls='lsd'
 alias tree='ls --tree'
 alias grep='grep --color=auto'
@@ -18,6 +17,8 @@ alias v='nvim'
 alias neofetch='fastfetch'
 alias open='xdg-open'
 alias k='kubecolor'
+alias suspend='echo mem | doas /usr/bin/tee /sys/power/state > /dev/null'
+alias hibernate='echo disk | doas /usr/bin/tee /sys/power/state > /dev/null'
 
 # Eval some apps
 eval "$(atuin init bash)"
