@@ -1,5 +1,5 @@
 // If you'd like to override the default keybindings completely, be sure to change "keybinds" to "keybinds clear-defaults=true"
-keybinds {
+keybinds clear-defaults=true {
     locked {
         bind "Ctrl g" { SwitchToMode "Normal"; }
     }
@@ -193,6 +193,12 @@ plugins {
     }
 }
 
+load_plugins {
+
+}
+
+theme "catppuccin-mocha"
+
 // Choose what to do when zellij receives SIGTERM, SIGINT, SIGQUIT or SIGHUP
 on_force_close "quit"
 
@@ -213,7 +219,7 @@ pane_frames false
 //   - true (default)
 //   - false
 //
-// auto_layout true
+auto_layout true
 
 // Whether sessions should be serialized to the cache folder (including their tabs/panes, cwds and running commands) so that they can later be resurrected
 // Options:
@@ -233,26 +239,6 @@ pane_frames false
 // also default to the scrollback size. This does nothing if `serialize_pane_viewport` is not true.
 //
 // scrollback_lines_to_serialize 10000
-
-// Define color themes for Zellij
-themes {
-    catppuccin-mocha {
-        bg "#585b70" // Surface2
-        fg "#cdd6f4"
-        red "#f38ba8"
-        green "#a6e3a1"
-        blue "#89b4fa"
-        yellow "#f9e2af"
-        magenta "#f5c2e7" // Pink
-        orange "#fab387" // Peach
-        cyan "#89dceb" // Sky
-        black "#181825" // Mantle
-        white "#cdd6f4"
-    }
-}
-
-// Choose the theme that is specified in the themes section.
-theme "catppuccin-mocha"
 
 // The name of the default layout to load on startup
 // Default: "default"
@@ -336,3 +322,5 @@ theme "catppuccin-mocha"
 // Default: false
 //
 // disable_session_metadata true
+
+support_kitty_keyboard_protocol false
