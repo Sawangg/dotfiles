@@ -34,7 +34,7 @@ return {
     },
     opts = {
       -- Path to your vaults
-      ui = { enable = { false } },
+      ui = { enable = false },
       workspaces = {
         {
           name = "main",
