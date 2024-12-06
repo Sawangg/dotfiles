@@ -36,3 +36,4 @@ require("lazy").setup("plugins", {
 require("keymaps")
 require("options")
 require("autocmds")
+-- require("azerty") -- Uncomment to use french azerty keyboard
