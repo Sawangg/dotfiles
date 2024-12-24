@@ -2,6 +2,7 @@ return {
   { -- Autocompletion
     "saghen/blink.cmp",
     dependencies = "rafamadriz/friendly-snippets",
+    version = "*",
     opts = {
       -- 'default' for mappings similar to built-in completion
       -- 'super-tab' for mappings similar to vscode (tab to accept, arrow keys to navigate)
