@@ -20,9 +20,4 @@ return {
       })
     end,
   },
-  { -- Force good typing for a better workflow (no mouse and better keys hints)
-    "m4xshen/hardtime.nvim",
-    dependencies = { "MunifTanjim/nui.nvim", "nvim-lua/plenary.nvim" },
-    opts = {}
-  },
 }
