@@ -22,4 +22,5 @@ This is the list of all the packages the dotfiles need. A nice install script wi
 ```sh
 doas pacman -S hyprland foot stow zellij atuin bat lsd neovim starship grim slurp wl-clipboard zoxide fzf libnotify brightnessctl playerctl hyprpicker hypridle hyprlock
 yay -S tofi hyprsunset
+bat cache --build
 ```

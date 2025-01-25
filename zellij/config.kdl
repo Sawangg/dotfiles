@@ -3,6 +3,15 @@ keybinds clear-defaults=true {
     locked {
         bind "Ctrl g" { SwitchToMode "Normal"; }
     }
+    normal {
+        // Search and open Obsidian Vault notes in a zellij floating pane using fzf, bat and nvim
+        bind "Ctrl f" {
+          // This is hacky, cwd does not work and we can't spawn floating pane, thus needing to use the CLI
+          Run "zellij" "run" "-n" "Notes" "-f" "-c" "--" "bash" "-c" "cd ~/Documents/vaults/ && find . -type f -name '*.md' | fzf --prompt 'Notes> ' --preview 'bat -p --color=always {}' --bind 'enter:become(nvim {+})'" {
+            close_on_exit true
+          }
+        }
+    }
     resize {
         bind "Ctrl n" { SwitchToMode "Normal"; }
         bind "h" "Left" { Resize "Increase Left"; }
