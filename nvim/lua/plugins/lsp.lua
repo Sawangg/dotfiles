@@ -9,7 +9,16 @@ return {
       "williamboman/mason-lspconfig.nvim",
 
       -- Useful status updates for LSP
-      { "j-hui/fidget.nvim", opts = {} },
+      {
+        "j-hui/fidget.nvim",
+        opts = {
+          notification = {
+            window = {
+              winblend = 0, -- No background
+            },
+          },
+        },
+      },
 
       -- Provide LuaLS with Neovim API
       {
