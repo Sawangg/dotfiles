@@ -28,6 +28,6 @@ return {
     },
   },
   { -- Set buffer options automatically
-    "tpope/vim-sleuth"
+    "tpope/vim-sleuth",
   },
 }
