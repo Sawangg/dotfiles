@@ -1,19 +1,19 @@
 return {
-  { -- If you want to see what colorschemes are already installed, you can use `:Telescope colorscheme`.
-    "folke/tokyonight.nvim",
+  {
+    "catppuccin/nvim",
+    name = "catppuccin",
     priority = 1000,
+    opts = {
+      transparent_background = true,
+      integrations = {
+        blink_cmp = true,
+        fidget = true,
+        mason = true,
+        which_key = true,
+      },
+    },
     init = function()
-      -- Make all backgrounds transparent
-      vim.api.nvim_create_autocmd("ColorScheme", {
-        callback = function()
-          vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
-          vim.api.nvim_set_hl(0, "NormalNC", { bg = "none" })
-          vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
-          vim.api.nvim_set_hl(0, "SignColumn", { bg = "none" })
-        end,
-      })
-
-      vim.cmd.colorscheme("tokyonight-night") -- Default colorscheme
+      vim.cmd.colorscheme("catppuccin") -- Default colorscheme
       vim.cmd.hi("Comment gui=none") -- Disable the default gui on launch
     end,
   },
