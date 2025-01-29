@@ -28,4 +28,3 @@ eval "$(starship init bash)"
 
 # Env variables
 export STARSHIP_CONFIG=~/.config/starship/starship.toml
-export SSH_AUTH_SOCK=$XDG_RUNTIME_DIR/ssh-agent.socket
