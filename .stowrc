@@ -2,3 +2,4 @@
 --target=~/.config
 --ignore=.stowrc
 --ignore=.bashrc
+--ignore=.bash_profile
