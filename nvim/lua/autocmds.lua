@@ -13,7 +13,7 @@ vim.api.nvim_create_autocmd("VimEnter", {
   desc = "Open file explorer when starting Vim without a file",
   group = vim.api.nvim_create_augroup("OpenFolderView", { clear = true }),
   callback = function()
-    if vim.fn.argc() == 0 then
+    if vim.fn.argc() == 0 and vim.bo.filetype ~= "man" then
       vim.defer_fn(function()
         require("oil").open()
       end, 1)
