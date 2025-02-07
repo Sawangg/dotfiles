@@ -1,7 +1,9 @@
 [Default Applications]
+# Links
 x-scheme-handler/http=librewolf.desktop
 x-scheme-handler/https=librewolf.desktop
-x-scheme-handler/chrome=librewolf.desktop
+
+# HTML
 text/html=librewolf.desktop
 application/x-extension-htm=librewolf.desktop
 application/x-extension-html=librewolf.desktop
@@ -9,5 +11,9 @@ application/x-extension-shtml=librewolf.desktop
 application/xhtml+xml=librewolf.desktop
 application/x-extension-xhtml=librewolf.desktop
 application/x-extension-xht=librewolf.desktop
+
+# Documents
 application/pdf=org.pwmt.zathura.desktop
-image/svg+xml=librewolf.desktop;
+
+# Images
+image/svg+xml=librewolf.desktop
