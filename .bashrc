@@ -7,10 +7,9 @@ complete -cf doas
 
 # Aliases
 alias cat='bat'
+alias cd='z'
 alias ls='lsd'
 alias tree='ls --tree'
-alias grep='grep --color=auto'
-alias cd='z'
 alias sudo='doas'
 alias yay='yay --sudo doas --sudoflags -- --save'
 alias vim='nvim'
