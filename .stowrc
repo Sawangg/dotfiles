@@ -3,3 +3,4 @@
 --ignore=.stowrc
 --ignore=.bashrc
 --ignore=.bash_profile
+--ignore=setup.sh
