@@ -13,11 +13,11 @@ This is my dotfiles repository containing all of my configs. I tried to achieve 
 
 ## Install
 
-Install every dotfiles and my bash config by running
+You can simply run the following setup script to install my config
 
 ```sh
 sh <(curl -s "https://raw.githubusercontent.com/Sawangg/dotfiles/refs/heads/master/setup.sh")
 ```
 
 > [!NOTE]
-> This script is usable on any Linux distro but will only be able to install packages automatically on Arch based distros
+> This script will only be able to install packages automatically on Arch based distros
