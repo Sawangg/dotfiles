@@ -84,6 +84,20 @@ fi
 
 git clone https://github.com/Sawangg/dotfiles.git $CHOSEN_PATH
 
+# Configure Hyprland to better match the environment using custom.conf
+touch $CHOSEN_PATH/dotfiles/hypr/hyprland/custom.conf
+
+if lsmod | grep -i nvidia > /dev/null; then
+    echo "NVIDIA GPU detected. Adding NVIDIA configuration to Hyprland custom.conf."
+    echo "source = ~/.config/hypr/hyprland/nvidia.conf" >> $CHOSEN_PATH/dotfiles/hypr/hyprland/custom.conf
+fi
+
+read -p "Do you wish to use the French AZERTY keyboard layout as the default (y/N): " answer
+if [[ "$answer" == "y" || "$answer" == "Y" ]]; then
+   echo "source = ~/.config/hypr/hyprland/azerty.conf" >> $CHOSEN_PATH/dotfiles/hypr/hyprland/custom.conf
+fi
+
+# Symlink to destination
 echo "Creating symlinks..."
 cd $CHOSEN_PATH/dotfiles
 stow -R .
