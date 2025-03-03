@@ -101,17 +101,27 @@ fi
 git clone https://github.com/Sawangg/dotfiles.git "$CHOSEN_PATH"
 
 # Configure Hyprland to better match the environment using custom.conf
-touch "$CHOSEN_PATH/dotfiles/hypr/hyprland/custom.conf"
+custom_conf="$CHOSEN_PATH/dotfiles/hypr/hyprland/custom.conf"
+touch "$custom_conf"
+
+append_to_custom_conf() {
+    local config="$1"
+    while IFS= read -r line; do
+      [ "$line" = "$config" ] && return 0 # Line already exists, no need to add to the config
+    done < "$custom_conf"
+
+    echo "$config" >> "$custom_conf"
+}
 
 if lsmod | grep -i nvidia > /dev/null; then
     printf "${GREEN}NVIDIA GPU detected. Adding NVIDIA configuration to Hyprland custom.conf.${RESET}\n"
-    echo "source = ~/.config/hypr/hyprland/nvidia.conf" >> "$CHOSEN_PATH/dotfiles/hypr/hyprland/custom.conf"
+    append_to_custom_conf "source = ~/.config/hypr/hyprland/nvidia.conf"
 fi
 
 printf "${CYAN}Do you wish to use the French AZERTY keyboard layout as the default (y/N): ${RESET}"
 read answer
 if [ "$answer" = "y" ] || [ "$answer" = "Y" ]; then
-    echo "source = ~/.config/hypr/hyprland/azerty.conf" >> "$CHOSEN_PATH/dotfiles/hypr/hyprland/custom.conf"
+    append_to_custom_conf "source = ~/.config/hypr/hyprland/azerty.conf"
 fi
 
 # Symlink to destination
@@ -123,6 +133,8 @@ ln -sf "$CHOSEN_PATH/dotfiles/.bashrc" ~/.bashrc
 
 # bat cache --build
 
+# Reload configs
 source ~/.bashrc
+hyprctl reload
 
 printf "${GREEN}Dotfiles setup completed successfully! You can logout and log back in to see the changes!${RESET}\n"
