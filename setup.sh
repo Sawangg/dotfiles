@@ -16,7 +16,6 @@ check_command() {
 }
 
 # Set the default tool for elevated privileges
-ELEVATED_PRIVILEGE_CMD=doas
 if check_command doas; then
   ELEVATED_PRIVILEGE_CMD=doas
 elif check_command sudo; then
