@@ -6,6 +6,7 @@
 complete -cf doas
 
 # Aliases
+alias birth='stat / | grep Birth'
 alias cat='bat'
 alias cd='z'
 alias ls='lsd'
