@@ -1,7 +1,10 @@
-sync_address = "http://192.168.1.82"
-sync_frequency = "1m"
+# db_path = "~/.history.db"
+auto_sync = false
+# sync_address = "http://192.168.1.82"
+# sync_frequency = "1m"
 
 style = "compact"
+inline_height = 0
 
 history_filter = [
    "^cd",
@@ -16,3 +19,6 @@ history_filter = [
 ]
 
 enter_accept = true
+
+[theme]
+name = "catppuccin-mocha"
