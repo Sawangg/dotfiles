@@ -1,8 +1,9 @@
 return {
   { -- Autocompletion
     "saghen/blink.cmp",
-    dependencies = { "rafamadriz/friendly-snippets" },
+    dependencies = { "fang2hou/blink-copilot", "rafamadriz/friendly-snippets" },
     version = "*",
+
     opts = {
       -- 'default' for mappings similar to built-in completion
       -- 'super-tab' for mappings similar to vscode (tab to accept, arrow keys to navigate)
@@ -14,18 +15,41 @@ return {
       },
 
       sources = {
-        -- add lazydev to your completion providers
-        default = { "lazydev", "lsp", "path", "snippets", "buffer" },
+        default = { "lazydev", "copilot", "lsp", "path", "snippets", "buffer" },
         providers = {
           lazydev = {
             name = "LazyDev",
             module = "lazydev.integrations.blink",
             score_offset = 100,
           },
+          copilot = {
+            name = "copilot",
+            module = "blink-copilot",
+            score_offset = 99,
+            async = true,
+          },
         },
       },
 
+      completion = {
+        ghost_text = { enabled = true },
+      },
+
       signature = { enabled = true },
+    },
+    opts_extend = { "sources.default" },
+  },
+  { -- GitHub Copilot (Use :Copilot auth to start)
+    "zbirenbaum/copilot.lua",
+    cmd = "Copilot",
+    event = "InsertEnter",
+    opts = {
+      suggestion = { enabled = false },
+      panel = { enabled = false },
+      filetypes = {
+        markdown = true,
+        help = true,
+      },
     },
   },
 }
