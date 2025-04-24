@@ -88,13 +88,6 @@ keybinds clear-defaults=true {
         bind "Ctrl o" { SwitchToMode "Normal"; }
         bind "Ctrl s" { SwitchToMode "Scroll"; }
         bind "d" { Detach; }
-        bind "w" {
-            LaunchOrFocusPlugin "session-manager" {
-                floating true
-                move_to_focused_tab true
-            };
-            SwitchToMode "Normal"
-        }
         bind "c" {
             LaunchOrFocusPlugin "configuration" {
                 floating true
@@ -129,6 +122,7 @@ keybinds clear-defaults=true {
         bind "Alt 8" "Alt _"  { GoToTab 8; SwitchToMode "Normal"; }
         bind "Alt 9" "Alt ç"  { GoToTab 9; SwitchToMode "Normal"; }
 
+        bind "Alt t" { NewTab; }
         bind "Alt n" { NewPane; }
         bind "Alt h" { MoveFocusOrTab "Left"; }
         bind "Alt l" { MoveFocusOrTab "Right"; }
@@ -151,6 +145,13 @@ keybinds clear-defaults=true {
                 move_to_focused_tab true
                 close_on_exit true
             }
+        }
+        bind "Ctrl q" {
+            LaunchOrFocusPlugin "session-manager" {
+                floating true
+                move_to_focused_tab true
+            };
+            SwitchToMode "Normal"
         }
     }
     shared_except "normal" "locked" {
@@ -245,7 +246,7 @@ auto_layout true
 // The name of the default layout to load on startup
 // Default: "default"
 //
-// default_layout "compact"
+default_layout "custom"
 
 // Choose the mode that zellij uses when starting up.
 // Default: normal
