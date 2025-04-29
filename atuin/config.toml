@@ -5,13 +5,14 @@ inline_height = 0
 
 history_filter = [
    "^cd",
-   "^z",
-   "^ls",
-   "^exit",
-   "^e",
    "^clear",
+   "^e",
+   "^exit",
    "^htop",
-   "^tgpt",
+   "^ls",
+   "^rm",
+   "^shred",
+   "^z",
    "^zellij"
 ]
 
