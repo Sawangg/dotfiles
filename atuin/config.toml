@@ -1,6 +1,3 @@
-# db_path = "~/.history.db"
-auto_sync = false
-# sync_address = "http://192.168.1.82"
 # sync_frequency = "1m"
 
 style = "compact"
