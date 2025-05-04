@@ -44,4 +44,8 @@ require("lazy").setup({
 require("keymaps")
 require("options")
 require("autocmds")
--- require("azerty") -- Uncomment to use french azerty keyboard
+-- custom.lua is a file that can be created to override or add properties based on your local environment. This file
+-- is not version controlled so each environment can add its own properties without conflict. The setup.sh script needs
+-- to be executed to create the custom.lua file and prevent a config error. An added bonus of using the setup.sh script
+-- is the auto sourcing of configs depending on your environment and your answer to prompts
+require("custom")

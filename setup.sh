@@ -99,28 +99,32 @@ fi
 
 git clone https://github.com/Sawangg/dotfiles.git "$CHOSEN_PATH"
 
-# Configure Hyprland to better match the environment using custom.conf
-custom_conf="$CHOSEN_PATH/dotfiles/hypr/hyprland/custom.conf"
-touch "$custom_conf"
+# Configure apps to better match the environment using custom.conf
+custom_hypr="$CHOSEN_PATH/dotfiles/hypr/hyprland/custom.conf"
+custom_nvim="$CHOSEN_PATH/dotfiles/nvim/lua/custom.lua"
+touch "$custom_hypr"
+touch "$custom_nvim"
 
 append_to_custom_conf() {
     local config="$1"
+    local conf_path="$2"
     while IFS= read -r line; do
       [ "$line" = "$config" ] && return 0 # Line already exists, no need to add to the config
-    done < "$custom_conf"
+    done < "$conf_path"
 
-    echo "$config" >> "$custom_conf"
+    echo "$config" >> "$conf_path"
 }
 
 if lsmod | grep -i nvidia > /dev/null; then
     printf "${GREEN}NVIDIA GPU detected. Adding NVIDIA configuration to Hyprland custom.conf.${RESET}\n"
-    append_to_custom_conf "source = ~/.config/hypr/hyprland/nvidia.conf"
+    append_to_custom_conf "source = ~/.config/hypr/hyprland/nvidia.conf" "$custom_hypr"
 fi
 
 printf "${CYAN}Do you wish to use the French AZERTY keyboard layout as the default (y/N): ${RESET}"
 read answer
 if [ "$answer" = "y" ] || [ "$answer" = "Y" ]; then
-    append_to_custom_conf "source = ~/.config/hypr/hyprland/azerty.conf"
+    append_to_custom_conf "source = ~/.config/hypr/hyprland/azerty.conf" "$custom_hypr"
+    append_to_custom_conf "require(\"azerty\")" "$custom_nvim"
 fi
 
 # Symlink to destination

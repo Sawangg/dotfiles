@@ -1,3 +1,4 @@
 tmux/plugins/
 hypr/hyprland/custom.conf
+nvim/lua/custom.lua
 
