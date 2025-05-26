@@ -9,7 +9,7 @@ This is my dotfiles repository containing all of my configs. I tried to achieve 
 - Consistent theme across all apps with soothing colors to limit eye strain
 - Compatible with `systemd` free distros like `Artix Linux`
 
-![screenshot](https://github.com/user-attachments/assets/0009d61a-ef4e-45ee-ad36-683c1169cbf3)
+![screenshot](https://github.com/user-attachments/assets/2a6944c0-f293-4043-828a-7f855e5723b3)
 
 ## Install
 
