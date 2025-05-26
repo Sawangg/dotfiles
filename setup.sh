@@ -1,10 +1,10 @@
 #!/bin/sh
 
-RESET="\033[0m"
-RED="\033[0;31m"
-GREEN="\033[0;32m"
-YELLOW="\033[1;33m"
-CYAN="\033[0;36m"
+readonly RESET="\033[0m"
+readonly RED="\033[0;31m"
+readonly GREEN="\033[0;32m"
+readonly YELLOW="\033[1;33m"
+readonly CYAN="\033[0;36m"
 
 if [ ! -t 0 ]; then
   printf "${RED}Not interactive. Exiting...${RESET}\n"
@@ -134,10 +134,6 @@ stow -R .
 ln -sf "$CHOSEN_PATH/dotfiles/.bash_profile" ~/.bash_profile
 ln -sf "$CHOSEN_PATH/dotfiles/.bashrc" ~/.bashrc
 
-# bat cache --build
+. ~/.bashrc
 
-# Reload configs
-source ~/.bashrc
-hyprctl reload
-
-printf "${GREEN}Dotfiles setup completed successfully! You can logout and log back in to see the changes!${RESET}\n"
+printf "${GREEN}Dotfiles setup completed successfully! Logout and log back in to see the changes!${RESET}\n"
