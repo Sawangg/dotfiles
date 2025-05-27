@@ -15,14 +15,18 @@ check_command() {
   type "$1" > /dev/null 2>&1
 }
 
-# Set the default tool for elevated privileges
-if check_command doas; then
-  ELEVATED_PRIVILEGE_CMD=doas
-elif check_command sudo; then
-  ELEVATED_PRIVILEGE_CMD=sudo
+if [ "$(id -u)" = "0" ]; then
+  printf "${GREEN}Running as root. No privilege elevation needed.${RESET}\n"
+  ELEVATED_PRIVILEGE_CMD=""
 else
-  printf "${RED}Sudo or doas is not installed and is required! Please install one of them manually!${RESET}\n"
-  exit 1
+  if check_command doas; then
+    ELEVATED_PRIVILEGE_CMD=doas
+  elif check_command sudo; then
+    ELEVATED_PRIVILEGE_CMD=sudo
+  else
+    printf "${RED}Sudo or doas is not installed and is required for non-root users! Please install one of them manually!${RESET}\n"
+    exit 1
+  fi
 fi
 
 # Check if the Linux distro is Arch based
@@ -73,7 +77,6 @@ if [ "$IS_ARCH_BASED" = "true" ]; then
   read answer
   if [ "$answer" = "y" ] || [ "$answer" = "Y" ]; then
     $ELEVATED_PRIVILEGE_CMD pacman -S foot zellij atuin bat neovim fd fzf lsd ripgrep zoxide starship grim slurp wl-clipboard libnotify brightnessctl playerctl hyprland hyprpicker hypridle hyprlock hyprsunset keepassxc
-    yay -S tofi
   fi
 else
   printf "${YELLOW}Skipping packages install because the script is not running on an Arch based distro!${RESET}\n"
@@ -107,12 +110,12 @@ touch "$custom_nvim"
 
 append_to_custom_conf() {
     local config="$1"
-    local conf_path="$2"
+    local path="$2"
     while IFS= read -r line; do
       [ "$line" = "$config" ] && return 0 # Line already exists, no need to add to the config
-    done < "$conf_path"
+    done < "$path"
 
-    echo "$config" >> "$conf_path"
+    echo "$config" >> "$path"
 }
 
 if lsmod | grep -i nvidia > /dev/null; then
