@@ -4,3 +4,4 @@
 --ignore=.bashrc
 --ignore=.bash_profile
 --ignore=setup.sh
+--ignore=lean.sh
