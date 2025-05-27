@@ -30,14 +30,14 @@ fi
 if check_command apt-get; then
     printf "${CYAN}Using package manager: ${BOLD}apt-get${RESET}\n"
     $SUDO apt-get update
-    $SUDO apt-get install -y stow fzf neovim ripgrep startship zoxide
+    $SUDO apt-get install -y stow fzf neovim ripgrep starship zoxide
 elif check_command apk; then
     printf "${CYAN}Using package manager: ${BOLD}apk${RESET}\n"
     $SUDO apk update
-    $SUDO apk add stow fzf neovim ripgrep startship zoxide
+    $SUDO apk add stow fzf neovim ripgrep starship zoxide
 elif check_command pacman; then
     printf "${CYAN}Using package manager: ${BOLD}pacman${RESET}\n"
-    $SUDO pacman -Sy --noconfirm stow fzf neovim ripgrep startship zoxide
+    $SUDO pacman -Sy --noconfirm stow fzf neovim ripgrep starship zoxide
 else
     printf "${RED}Error: No supported package manager found${RESET}\n"
     exit 1
