@@ -67,15 +67,22 @@ fi
 
 install_packages stow fzf ripgrep curl #atuin bat lsd zoxide starship
 
-printf "${CYAN}Installing Neovim AppImage...${RESET}\n"
-TEMP_DIR=$(mktemp -d)
-ORIGINAL_DIR=$(pwd)
-cd "$TEMP_DIR" || exit 1
-curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim.appimage
-chmod u+x nvim.appimage
-$ELEVATED_PRIVILEGE_CMD mv nvim.appimage /usr/local/bin/nvim
-cd "$ORIGINAL_DIR"
-rm -rf "$TEMP_DIR"
+printf "${CYAN}Installing Neovim from source${RESET}\n"
+git clone https://github.com/neovim/neovim.git /tmp/neovim
+cd /tmp/neovim
+make CMAKE_BUILD_TYPE=Release
+$ELEVATED_PRIVILEGE_CMD make install
+
+if check_command nvim; then
+    printf "${GREEN}✓ Neovim installed successfully.${RESET}\n"
+    nvim --version | head -1
+else
+    printf "${RED}✗ Neovim installation failed.${RESET}\n"
+    exit 1
+fi
+
+cd - > /dev/null
+rm -rf /tmp/neovim
 
 stow -R .
 
