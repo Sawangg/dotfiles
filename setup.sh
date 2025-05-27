@@ -6,14 +6,24 @@ readonly GREEN="\033[0;32m"
 readonly YELLOW="\033[1;33m"
 readonly CYAN="\033[0;36m"
 
+check_command() {
+  type "$1" > /dev/null 2>&1
+}
+
+append_line() {
+    local new_line="$1"
+    local path="$2"
+    while IFS= read -r line; do
+      [ "$line" = "$new_line" ] && return 0
+    done < "$path"
+
+    echo "$new_line" >> "$path"
+}
+
 if [ ! -t 0 ]; then
   printf "${RED}Not interactive. Exiting...${RESET}\n"
   exit 1
 fi
-
-check_command() {
-  type "$1" > /dev/null 2>&1
-}
 
 if [ "$(id -u)" = "0" ]; then
   printf "${GREEN}Running as root. No privilege elevation needed.${RESET}\n"
@@ -32,7 +42,7 @@ fi
 # Check if the Linux distro is Arch based
 IS_ARCH_BASED="false"
 
-if check_command pacman && check_command yay; then
+if check_command pacman; then
     printf "${GREEN}Arch based system detected.${RESET}\n"
     IS_ARCH_BASED="true"
 fi
@@ -107,16 +117,6 @@ custom_hypr="$CHOSEN_PATH/dotfiles/hypr/hyprland/custom.conf"
 touch "$custom_hypr"
 custom_nvim="$CHOSEN_PATH/dotfiles/nvim/lua/custom.lua"
 touch "$custom_nvim"
-
-append_line() {
-    local new_line="$1"
-    local path="$2"
-    while IFS= read -r line; do
-      [ "$line" = "$new_line" ] && return 0
-    done < "$path"
-
-    echo "$new_line" >> "$path"
-}
 
 if lsmod | grep -i nvidia > /dev/null; then
     printf "${GREEN}NVIDIA GPU detected. Adding NVIDIA configuration to Hyprland custom.conf.${RESET}\n"
