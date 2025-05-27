@@ -9,7 +9,6 @@ set -eu
 readonly RESET="\033[0m"
 readonly RED="\033[0;31m"
 readonly GREEN="\033[0;32m"
-readonly YELLOW="\033[1;33m"
 readonly CYAN="\033[0;36m"
 readonly BOLD="\033[1m"
 
@@ -17,61 +16,34 @@ check_command() {
   type "$1" > /dev/null 2>&1
 }
 
-install_packages() {
-    if [ $# -eq 0 ]; then
-        printf "${RED}Error: No packages specified for installation${RESET}\n" >&2
-        return 1
-    fi
+printf "${CYAN}Setting up dotfiles for devcontainer...${RESET}\n"
 
-    case "$PACKAGE_MANAGER" in
-        "apt-get")
-            $ELEVATED_PRIVILEGE_CMD apt-get install -y "$@"
-            ;;
-        "apk")
-            $ELEVATED_PRIVILEGE_CMD apk add "$@"
-            ;;
-        "pacman")
-            $ELEVATED_PRIVILEGE_CMD pacman -Sy --noconfirm "$@"
-            ;;
-        *)
-            printf "${RED}Error: Unsupported package manager '${YELLOW}%s${RED}'${RESET}\n" "$PACKAGE_MANAGER" >&2
-            return 1
-            ;;
-    esac
-}
-
-printf "${CYAN}Executing the leaner dotfiles script for devcontainers.${RESET}\n"
-
-if check_command doas; then
-    ELEVATED_PRIVILEGE_CMD=doas
-elif check_command sudo; then
-    ELEVATED_PRIVILEGE_CMD=sudo
+if check_command sudo; then
+    SUDO=sudo
+elif check_command doas; then
+    SUDO=doas
 else
-    printf "${RED}sudo or doas is not installed and is required to run this script!${RESET}\n"
+    printf "${RED}Error: sudo or doas required${RESET}\n"
     exit 1
 fi
 
 if check_command apt-get; then
-    PACKAGE_MANAGER="apt-get"
-    printf "${CYAN}Found package manager: ${BOLD}apt-get${RESET}\n"
-    $ELEVATED_PRIVILEGE_CMD apt-get update
+    printf "${CYAN}Using package manager: ${BOLD}apt-get${RESET}\n"
+    $SUDO apt-get update
+    $SUDO apt-get install -y stow fzf neovim ripgrep startship zoxide
 elif check_command apk; then
-    PACKAGE_MANAGER="apk"
-    printf "${CYAN}Found package manager: ${BOLD}apk${RESET}\n"
-    $ELEVATED_PRIVILEGE_CMD apk update
+    printf "${CYAN}Using package manager: ${BOLD}apk${RESET}\n"
+    $SUDO apk update
+    $SUDO apk add stow fzf neovim ripgrep startship zoxide
 elif check_command pacman; then
-    PACKAGE_MANAGER="pacman"
-    printf "${CYAN}Found package manager: ${BOLD}pacman${RESET}\n"
+    printf "${CYAN}Using package manager: ${BOLD}pacman${RESET}\n"
+    $SUDO pacman -Sy --noconfirm stow fzf neovim ripgrep startship zoxide
 else
-    printf "${RED}No supported package manager found. Exiting...${RESET}\n"
+    printf "${RED}Error: No supported package manager found${RESET}\n"
     exit 1
 fi
-
-install_packages stow fzf neovim ripgrep curl cmake #atuin bat lsd zoxide starship
 
 stow -R .
 ln -sf "$HOME/dotfiles/.bashrc" ~/.bashrc
 
-. ~/.bashrc
-
-printf "${GREEN}✓ Installed the dotfiles successfully.${RESET}\n"
+printf "${GREEN}✓ Dotfiles installed successfully${RESET}\n"
