@@ -40,8 +40,10 @@ install_packages() {
 }
 
 if check_command apt-get; then
+    sudo apt-get update
     PACKAGE_MANAGER="apt-get"
 elif check_command apk; then
+    sudo apk update
     PACKAGE_MANAGER="apk"
 elif check_command yum; then
     PACKAGE_MANAGER="yum"
