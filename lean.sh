@@ -68,7 +68,7 @@ fi
 install_packages stow fzf ripgrep curl #atuin bat lsd zoxide starship
 
 printf "${CYAN}Installing Neovim from source${RESET}\n"
-git clone https://github.com/neovim/neovim.git /tmp/neovim
+git clone --depth 1 --single-branch --branch master https://github.com/neovim/neovim.git /tmp/neovim
 cd /tmp/neovim
 make CMAKE_BUILD_TYPE=Release
 $ELEVATED_PRIVILEGE_CMD make install
