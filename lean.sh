@@ -16,19 +16,19 @@ install_packages() {
 
     case "$PACKAGE_MANAGER" in
         "apt-get")
-            apt-get install -y "$@"
+            sudo apt-get install -y "$@"
             ;;
         "apk")
-            apk add "$@"
+            sudo apk add "$@"
             ;;
         "yum")
-            yum install -y "$@"
+            sudo yum install -y "$@"
             ;;
         "dnf")
-            dnf install -y "$@"
+            sudo dnf install -y "$@"
             ;;
         "pacman")
-            pacman -Sy --noconfirm "$@"
+            sudo pacman -Sy --noconfirm "$@"
             ;;
         *)
             printf "Error: Unsupported package manager '%s'\n" "$PACKAGE_MANAGER" >&2
@@ -40,10 +40,10 @@ install_packages() {
 PACKAGE_MANAGER=""
 
 if check_command apt-get; then
-    apt-get update
+    sudo apt-get update
     PACKAGE_MANAGER="apt-get"
 elif check_command apk; then
-    apk update
+    sudo apk update
     PACKAGE_MANAGER="apk"
 elif check_command yum; then
     PACKAGE_MANAGER="yum"
