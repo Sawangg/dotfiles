@@ -4,6 +4,8 @@
 # THIS SCRIPT SHOULD ONLY BE USED INSIDE A DEVCONTAINER
 #
 
+set -eu
+
 readonly RESET="\033[0m"
 readonly RED="\033[0;31m"
 readonly GREEN="\033[0;32m"
@@ -85,5 +87,8 @@ cd - > /dev/null
 rm -rf /tmp/neovim
 
 stow -R .
+ln -sf "$HOME/dotfiles/.bashrc" ~/.bashrc
+
+. ~/.bashrc
 
 printf "${GREEN}✓ Installed the dotfiles successfully.${RESET}\n"
