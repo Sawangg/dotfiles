@@ -108,7 +108,7 @@ custom_nvim="$CHOSEN_PATH/dotfiles/nvim/lua/custom.lua"
 touch "$custom_hypr"
 touch "$custom_nvim"
 
-append_to_custom_conf() {
+append_line() {
     local config="$1"
     local path="$2"
     while IFS= read -r line; do
@@ -120,14 +120,14 @@ append_to_custom_conf() {
 
 if lsmod | grep -i nvidia > /dev/null; then
     printf "${GREEN}NVIDIA GPU detected. Adding NVIDIA configuration to Hyprland custom.conf.${RESET}\n"
-    append_to_custom_conf "source = ~/.config/hypr/hyprland/nvidia.conf" "$custom_hypr"
+    append_line "source = ~/.config/hypr/hyprland/nvidia.conf" "$custom_hypr"
 fi
 
 printf "${CYAN}Do you wish to use the French AZERTY keyboard layout as the default (y/N): ${RESET}"
 read answer
 if [ "$answer" = "y" ] || [ "$answer" = "Y" ]; then
-    append_to_custom_conf "source = ~/.config/hypr/hyprland/azerty.conf" "$custom_hypr"
-    append_to_custom_conf "require(\"azerty\")" "$custom_nvim"
+    append_line "source = ~/.config/hypr/hyprland/azerty.conf" "$custom_hypr"
+    append_line "require(\"azerty\")" "$custom_nvim"
 fi
 
 # Symlink to destination
