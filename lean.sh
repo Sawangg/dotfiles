@@ -67,24 +67,7 @@ else
     exit 1
 fi
 
-install_packages stow fzf ripgrep curl cmake #atuin bat lsd zoxide starship
-
-printf "${CYAN}Installing Neovim from source${RESET}\n"
-git clone --depth 1 --single-branch --branch master https://github.com/neovim/neovim.git /tmp/neovim
-cd /tmp/neovim
-make CMAKE_BUILD_TYPE=Release
-$ELEVATED_PRIVILEGE_CMD make install
-
-if check_command nvim; then
-    printf "${GREEN}✓ Neovim installed successfully.${RESET}\n"
-    nvim --version | head -1
-else
-    printf "${RED}✗ Neovim installation failed.${RESET}\n"
-    exit 1
-fi
-
-cd - > /dev/null
-rm -rf /tmp/neovim
+install_packages stow fzf neovim ripgrep curl cmake #atuin bat lsd zoxide starship
 
 stow -R .
 ln -sf "$HOME/dotfiles/.bashrc" ~/.bashrc
