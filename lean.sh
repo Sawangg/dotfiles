@@ -65,7 +65,7 @@ else
     exit 1
 fi
 
-install_packages stow fzf ripgrep curl #atuin bat lsd zoxide starship
+install_packages stow fzf ripgrep curl cmake #atuin bat lsd zoxide starship
 
 printf "${CYAN}Installing Neovim from source${RESET}\n"
 git clone --depth 1 --single-branch --branch master https://github.com/neovim/neovim.git /tmp/neovim
