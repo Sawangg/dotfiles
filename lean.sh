@@ -65,7 +65,7 @@ else
     exit 1
 fi
 
-install_packages stow fd fzf ripgrep curl #atuin bat lsd zoxide starship
+install_packages stow fzf ripgrep curl #atuin bat lsd zoxide starship
 
 printf "${CYAN}Installing Neovim AppImage...${RESET}\n"
 TEMP_DIR=$(mktemp -d)
