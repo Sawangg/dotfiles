@@ -21,7 +21,7 @@ append_line() {
 }
 
 if [ ! -t 0 ]; then
-  printf "${RED}Not interactive. Exiting...${RESET}\n"
+  printf "${RED}✗ Not interactive. Exiting...${RESET}\n"
   exit 1
 fi
 
@@ -34,7 +34,7 @@ else
   elif check_command sudo; then
     ELEVATED_PRIVILEGE_CMD=sudo
   else
-    printf "${RED}Sudo or doas is not installed and is required for non-root users! Please install one of them manually!${RESET}\n"
+    printf "${RED}✗ Sudo or doas is not installed and is required for non-root users! Please install one of them manually!${RESET}\n"
     exit 1
   fi
 fi
@@ -50,7 +50,7 @@ fi
 # Check if git is installed, prompt the user for install if not
 if ! check_command git; then
   if [ "$IS_ARCH_BASED" = "false" ]; then
-    printf "${RED}Git is not installed and is required! Please install it manually!${RESET}\n"
+    printf "${RED}✗ Git is not installed and is required! Please install it manually!${RESET}\n"
     exit 1
   fi
 
@@ -59,7 +59,7 @@ if ! check_command git; then
   if [ "$answer" = "y" ] || [ "$answer" = "Y" ]; then
     $ELEVATED_PRIVILEGE_CMD pacman -S git
   else
-    printf "${RED}Exiting...${RESET}\n"
+    printf "${RED}✗ Exiting...${RESET}\n"
     exit 1
   fi
 fi
@@ -67,7 +67,7 @@ fi
 # Check if stow is installed, prompt the user for install if not
 if ! check_command stow; then
   if [ "$IS_ARCH_BASED" = "false" ]; then
-    printf "${RED}Stow is not installed and is required! Please install it manually!${RESET}\n"
+    printf "${RED}✗ Stow is not installed and is required! Please install it manually!${RESET}\n"
     exit 1
   fi
 
@@ -76,7 +76,7 @@ if ! check_command stow; then
   if [ "$answer" = "y" ] || [ "$answer" = "Y" ]; then
     $ELEVATED_PRIVILEGE_CMD pacman -S stow
   else
-    printf "${RED}Exiting...${RESET}\n"
+    printf "${RED}✗ Exiting...${RESET}\n"
     exit 1
   fi
 fi
@@ -105,7 +105,7 @@ if [ ! -d "$CHOSEN_PATH" ]; then
     if [ "$answer" = "y" ] || [ "$answer" = "Y" ]; then
       mkdir -p "$CHOSEN_PATH"
     else
-      printf "${RED}Exiting...${RESET}\n"
+      printf "${RED}✗ Exiting...${RESET}\n"
       exit 1
     fi
 fi
