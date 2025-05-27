@@ -8,6 +8,8 @@ check_command() {
   type "$1" > /dev/null 2>&1
 }
 
+PACKAGE_MANAGER=""
+
 install_packages() {
     if [ $# -eq 0 ]; then
         printf "Error: No packages specified for installation\n" >&2
@@ -37,13 +39,9 @@ install_packages() {
     esac
 }
 
-PACKAGE_MANAGER=""
-
 if check_command apt-get; then
-    sudo apt-get update
     PACKAGE_MANAGER="apt-get"
 elif check_command apk; then
-    sudo apk update
     PACKAGE_MANAGER="apk"
 elif check_command yum; then
     PACKAGE_MANAGER="yum"
@@ -56,7 +54,7 @@ else
     exit 1
 fi
 
-install_packages stow nvim
+install_packages stow neovim
 
 stow -R .
 
