@@ -104,18 +104,18 @@ git clone https://github.com/Sawangg/dotfiles.git "$CHOSEN_PATH"
 
 # Configure apps to better match the environment using custom.conf
 custom_hypr="$CHOSEN_PATH/dotfiles/hypr/hyprland/custom.conf"
-custom_nvim="$CHOSEN_PATH/dotfiles/nvim/lua/custom.lua"
 touch "$custom_hypr"
+custom_nvim="$CHOSEN_PATH/dotfiles/nvim/lua/custom.lua"
 touch "$custom_nvim"
 
 append_line() {
-    local config="$1"
+    local new_line="$1"
     local path="$2"
     while IFS= read -r line; do
-      [ "$line" = "$config" ] && return 0 # Line already exists, no need to add to the config
+      [ "$line" = "$new_line" ] && return 0
     done < "$path"
 
-    echo "$config" >> "$path"
+    echo "$new_line" >> "$path"
 }
 
 if lsmod | grep -i nvidia > /dev/null; then
@@ -139,4 +139,4 @@ ln -sf "$CHOSEN_PATH/dotfiles/.bashrc" ~/.bashrc
 
 . ~/.bashrc
 
-printf "${GREEN}Dotfiles setup completed successfully! Logout and log back in to see the changes!${RESET}\n"
+printf "${GREEN}✓ Dotfiles setup completed successfully! Logout and log back in to see the changes!${RESET}\n"
