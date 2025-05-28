@@ -4,7 +4,7 @@
 # THIS SCRIPT SHOULD ONLY BE USED INSIDE A DEVCONTAINER
 #
 
-set -eu
+set -euf
 
 readonly RESET="\033[0m"
 readonly RED="\033[0;31m"
@@ -12,38 +12,34 @@ readonly GREEN="\033[0;32m"
 readonly CYAN="\033[0;36m"
 readonly BOLD="\033[1m"
 
-check_command() {
-  type "$1" > /dev/null 2>&1
-}
+printf "%sSetting up dotfiles for devcontainer...%s\n" "$CYAN" "$RESET"
 
-printf "${CYAN}Setting up dotfiles for devcontainer...${RESET}\n"
-
-if check_command sudo; then
+if command -v sudo > /dev/null 2>&1; then
     SUDO=sudo
-elif check_command doas; then
+elif command -v doas > /dev/null 2>&1; then
     SUDO=doas
 else
-    printf "${RED}Error: sudo or doas required${RESET}\n"
+    printf "%sError: sudo or doas required%s\n" "$RED" "$RESET"
     exit 1
 fi
 
-if check_command apt-get; then
-    printf "${CYAN}Using package manager: ${BOLD}apt-get${RESET}\n"
+if command -v apt-get > /dev/null 2>&1; then
+    printf "%sUsing package manager: %sapt-get%s\n" "$CYAN" "$BOLD" "$RESET"
     $SUDO apt-get update
     $SUDO apt-get install -y stow fzf neovim ripgrep starship zoxide
-elif check_command apk; then
-    printf "${CYAN}Using package manager: ${BOLD}apk${RESET}\n"
+elif command -v apk > /dev/null 2>&1; then
+    printf "%sUsing package manager: %sapk%s\n" "$CYAN" "$BOLD" "$RESET"
     $SUDO apk update
     $SUDO apk add stow fzf neovim ripgrep starship zoxide
-elif check_command pacman; then
-    printf "${CYAN}Using package manager: ${BOLD}pacman${RESET}\n"
+elif command -v pacman > /dev/null 2>&1; then
+    printf "%sUsing package manager: %spacman%s\n" "$CYAN" "$BOLD" "$RESET"
     $SUDO pacman -Sy --noconfirm stow fzf neovim ripgrep starship zoxide
 else
-    printf "${RED}Error: No supported package manager found${RESET}\n"
+    printf "%sError: No supported package manager found%s\n" "$RED" "$RESET"
     exit 1
 fi
 
 stow -R .
 ln -sf "$HOME/dotfiles/.bashrc" ~/.bashrc
 
-printf "${GREEN}✓ Dotfiles installed successfully${RESET}\n"
+printf "%s✓ Dotfiles installed successfully%s\n" "$GREEN" "$RESET"
