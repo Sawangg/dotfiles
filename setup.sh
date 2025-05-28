@@ -8,10 +8,6 @@ readonly GREEN="\033[0;32m"
 readonly YELLOW="\033[1;33m"
 readonly CYAN="\033[0;36m"
 
-check_command() {
-  type "$1" > /dev/null 2>&1
-}
-
 append_line() {
     local new_line="$1"
     local path="$2"
@@ -31,9 +27,9 @@ if [ "$(id -u)" = "0" ]; then
   printf "${GREEN}Running as root. No privilege elevation needed.${RESET}\n"
   SUDO=""
 else
-  if check_command doas; then
+  if command -v doas > /dev/null 2>&1; then
     SUDO=doas
-  elif check_command sudo; then
+  elif command -v sudo > /dev/null 2>&1; then
     SUDO=sudo
   else
     printf "${RED}✗ Sudo or doas is not installed and is required for non-root users! Please install one of them manually!${RESET}\n"
@@ -44,13 +40,13 @@ fi
 # Check if the Linux distro is Arch based
 IS_ARCH_BASED="false"
 
-if check_command pacman; then
+if command -v pacman > /dev/null 2>&1; then
     printf "${GREEN}Arch based system detected.${RESET}\n"
     IS_ARCH_BASED="true"
 fi
 
 # Check if git is installed, prompt the user for install if not
-if ! check_command git; then
+if ! command -v git > /dev/null 2>&1; then
   if [ "$IS_ARCH_BASED" = "false" ]; then
     printf "${RED}✗ Git is not installed and is required! Please install it manually!${RESET}\n"
     exit 1
@@ -67,7 +63,7 @@ if ! check_command git; then
 fi
 
 # Check if stow is installed, prompt the user for install if not
-if ! check_command stow; then
+if ! command -v stow > /dev/null 2>&1; then
   if [ "$IS_ARCH_BASED" = "false" ]; then
     printf "${RED}✗ Stow is not installed and is required! Please install it manually!${RESET}\n"
     exit 1
