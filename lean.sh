@@ -6,6 +6,9 @@
 
 set -euf
 
+export TERM="${TERM:-xterm-256color}"
+export FORCE_COLOR=1
+
 readonly RESET="\033[0m"
 readonly RED="\033[0;31m"
 readonly GREEN="\033[0;32m"
@@ -44,7 +47,8 @@ printf "%sInstalling latest Neovim from GitHub releases...%s\n" "$CYAN" "$RESET"
 TEMP_DIR=$(mktemp -d)
 cd "$TEMP_DIR"
 
-NVIM_TARBALL="nvim-linux-$(uname -m | sed 's/aarch64/arm64/').tar.gz"
+NVIM_ARCH=$(uname -m | sed 's/aarch64/arm64/')
+NVIM_TARBALL="nvim-linux-${NVIM_ARCH}.tar.gz"
 printf "%sDownloading %s...%s\n" "$CYAN" "$NVIM_TARBALL" "$RESET"
 
 curl -LO "https://github.com/neovim/neovim/releases/latest/download/${NVIM_TARBALL}"
