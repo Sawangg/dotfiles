@@ -23,7 +23,7 @@ sh <(curl -s "https://raw.githubusercontent.com/Sawangg/dotfiles/refs/heads/mast
 > [!NOTE]
 > This script will only be able to install packages automatically on Arch based distros
 
-Or run all of your devcontainers with [DevPod](https://devpod.sh/) and the leaner dotfiles preinstalled
+Or run all of your devcontainers with the leaner dotfiles preinstalled
 
 ```sh
 devpod context set-options -o DOTFILES_URL=https://github.com/Sawangg/dotfiles -o DOTFILES_SCRIPT=lean.sh
