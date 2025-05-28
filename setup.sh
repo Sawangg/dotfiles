@@ -97,7 +97,7 @@ fi
 # TODO: Prompt the user to choose for which system user the dotfiles will be installed for
 
 # Ask the user to enter a path to store the dotfiles
-printf "${CYAN}Enter the full path where the dotfiles will be saved. (Default: ~/Documents/): ${RESET}"
+printf "${CYAN}Enter the full path where the dotfiles will be saved. (Default: ~/Documents/dotfiles/): ${RESET}"
 read CHOSEN_PATH
 CHOSEN_PATH="${CHOSEN_PATH:-$HOME/Documents}"
 
