@@ -63,3 +63,5 @@ stow -R .
 ln -sf "$HOME/dotfiles/.bashrc" ~/.bashrc
 
 printf "${GREEN}✓ Dotfiles installed successfully${RESET}\n"
+
+exit 0
