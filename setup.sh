@@ -1,6 +1,6 @@
 #!/bin/sh
 
-set -eu
+set -euf
 
 readonly RESET="\033[0m"
 readonly RED="\033[0;31m"
@@ -147,6 +147,8 @@ fi
 # Symlink to destination
 printf "${GREEN}Creating symlinks...${RESET}\n"
 cd "$CHOSEN_PATH/dotfiles"
+
+# TODO: Handle conflicting files using adopt or override
 stow -R .
 ln -sf "$CHOSEN_PATH/dotfiles/.bash_profile" ~/.bash_profile
 ln -sf "$CHOSEN_PATH/dotfiles/.bashrc" ~/.bashrc
