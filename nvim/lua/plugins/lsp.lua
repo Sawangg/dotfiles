@@ -97,11 +97,11 @@ return {
         end,
       })
 
-      --  You can press `g?` or `:Mason` for help in this menu.
       require("mason").setup()
 
       require("mason-lspconfig").setup({
         ensure_installed = opts.servers,
+        automatic_enable = true,
         automatic_installation = true,
         handlers = {
           function(server_name)
