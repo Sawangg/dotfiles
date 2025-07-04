@@ -81,10 +81,15 @@ fi
 
 # Ask the user if they want to install needed packages
 if [ "$IS_ARCH_BASED" = "true" ]; then
-  printf "%sDo you wish to install all the packages needed to make the dotfiles work? (y/N): %s" "$CYAN" "$RESET"
+  printf "%sDo you want to install the packages to make Neovim work? (y/N): %s" "$CYAN" "$RESET"
   read -r answer
   if [ "$answer" = "y" ] || [ "$answer" = "Y" ]; then
-    $SUDO pacman -S zellij atuin bat neovim fd fzf lsd ripgrep zoxide starship nodejs foot grim slurp wl-clipboard libnotify brightnessctl playerctl hyprland hyprpicker hypridle hyprlock hyprsunset keepassxc
+    $SUDO pacman -S zellij atuin bat neovim fd fzf lsd ripgrep zoxide starship nodejs
+  fi
+  printf "%sDo you want the full desktop experience? (y/N): %s" "$CYAN" "$RESET"
+  read -r answer
+  if [ "$answer" = "y" ] || [ "$answer" = "Y" ]; then
+    $SUDO pacman -S foot grim slurp wl-clipboard libnotify brightnessctl playerctl hyprland hyprpicker hypridle hyprlock hyprsunset keepassxc
   fi
 else
   printf "%sSkipping packages install because the script is not running on an Arch based distro!%s\n" "$YELLOW" "$RESET"
