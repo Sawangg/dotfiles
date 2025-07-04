@@ -84,7 +84,7 @@ if [ "$IS_ARCH_BASED" = "true" ]; then
   printf "%sDo you wish to install all the packages needed to make the dotfiles work? (y/N): %s" "$CYAN" "$RESET"
   read -r answer
   if [ "$answer" = "y" ] || [ "$answer" = "Y" ]; then
-    $SUDO pacman -S foot zellij atuin bat neovim fd fzf lsd ripgrep zoxide starship grim slurp wl-clipboard libnotify brightnessctl playerctl hyprland hyprpicker hypridle hyprlock hyprsunset keepassxc
+    $SUDO pacman -S zellij atuin bat neovim fd fzf lsd ripgrep zoxide starship nodejs foot grim slurp wl-clipboard libnotify brightnessctl playerctl hyprland hyprpicker hypridle hyprlock hyprsunset keepassxc
   fi
 else
   printf "%sSkipping packages install because the script is not running on an Arch based distro!%s\n" "$YELLOW" "$RESET"
@@ -119,7 +119,7 @@ elif [ -d "$CHOSEN_PATH/dotfiles" ] && [ "$(ls -A "$CHOSEN_PATH/dotfiles" 2>/dev
     printf "%s✗ Directory '%s/dotfiles' exists but is not a git repository! Please remove it manually or choose a different path.%s\n" "$RED" "$CHOSEN_PATH" "$RESET"
     exit 1
 else
-    git clone https://github.com/Sawangg/dotfiles.git "$CHOSEN_PATH"
+    git clone https://github.com/Sawangg/dotfiles.git "$CHOSEN_PATH/dotfiles"
 fi
 
 # Configure apps to better match the environment using custom.conf
@@ -143,6 +143,10 @@ fi
 # Symlink to destination
 printf "%sCreating symlinks...%s\n" "$GREEN" "$RESET"
 cd "$CHOSEN_PATH/dotfiles"
+
+if [ -d "$HOME/.config" ]; then
+  mkdir -p "$HOME/.config"
+fi
 
 # TODO: Handle conflicting files using adopt or override
 stow -R .
