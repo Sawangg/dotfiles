@@ -39,17 +39,4 @@ return {
     },
     opts_extend = { "sources.default" },
   },
-  { -- GitHub Copilot (Use :Copilot auth to start)
-    "zbirenbaum/copilot.lua",
-    cmd = "Copilot",
-    event = "InsertEnter",
-    opts = {
-      suggestion = { enabled = false },
-      panel = { enabled = false },
-      filetypes = {
-        markdown = true,
-        help = true,
-      },
-    },
-  },
 }
