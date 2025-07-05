@@ -6,18 +6,6 @@ return {
       { "nvim-tree/nvim-web-devicons", enabled = vim.g.have_nerd_font },
     },
     config = function()
-      require("fzf-lua").setup({
-        defaults = {
-          file_ignore_patterns = { ".git", "node_modules" },
-        },
-        files = {
-          fd_opts = "--color=never --type f --hidden --follow --exclude .git --exclude node_modules",
-        },
-        grep = {
-          rg_opts = "--column --line-number --no-heading --color=always --smart-case --hidden -g '!.git/' -g '!node_modules/'",
-        },
-      })
-
       local fzf = require("fzf-lua")
       vim.keymap.set("n", "<leader>sh", fzf.help_tags, { desc = "[S]earch [H]elp" })
       vim.keymap.set("n", "<leader>sk", fzf.keymaps, { desc = "[S]earch [K]eymaps" })
