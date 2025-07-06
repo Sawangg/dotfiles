@@ -1,7 +1,18 @@
 // See the default config here: https://github.com/zellij-org/zellij/blob/main/zellij-utils/assets/config/default.kdl
 keybinds clear-defaults=true {
+    normal {
+        // Intercept `Enter`.
+        bind "Enter" {
+            WriteChars "\u{000D}";
+            MessagePlugin "autolock" {};
+        }
+    }
     locked {
         bind "Ctrl g" { SwitchToMode "Normal"; }
+        bind "Alt z" {
+            MessagePlugin "autolock" { payload "disable"; }
+            SwitchToMode "Normal";
+        }
     }
     resize {
         bind "Ctrl n" { SwitchToMode "Normal"; }
@@ -111,6 +122,10 @@ keybinds clear-defaults=true {
         }
     }
     shared {
+        bind "Alt Shift z" {
+            MessagePlugin "autolock" { payload "enable"; }
+        }
+
         // Handle qwerty & azerty keyboard
         bind "Alt 1" "Alt &"  { GoToTab 1; SwitchToMode "Normal"; }
         bind "Alt 2" "Alt é"  { GoToTab 2; SwitchToMode "Normal"; }
@@ -133,11 +148,9 @@ keybinds clear-defaults=true {
         bind "Alt =" "Alt +" { Resize "Increase"; }
 
         bind "Alt f" { ToggleFloatingPanes; }
-    }
-    shared_except "locked" {
-        bind "Ctrl g" { SwitchToMode "Locked"; }
-        // Search and open Obsidian Vault notes in a zellij floating pane using fzf, bat and nvim
-        bind "Ctrl f" {
+
+        // Search and open Obsidian notes in a Zellij floating pane using fzf, bat and Neovim
+        bind "Alt o" {
             Run "bash" "-c" "find . -type f -name '*.md' | fzf --prompt 'Notes> ' --preview 'bat -p --color=always {}' --bind 'enter:become(nvim {+})'" {
                 name "Notes"
                 cwd "/home/leo/Documents/vaults"
@@ -153,6 +166,9 @@ keybinds clear-defaults=true {
             };
             SwitchToMode "Normal"
         }
+    }
+    shared_except "locked" {
+        bind "Ctrl g" { SwitchToMode "Locked"; }
     }
     shared_except "normal" "locked" {
         bind "Enter" "Esc" { SwitchToMode "Normal"; }
@@ -191,13 +207,19 @@ plugins {
     configuration location="zellij:configuration"
     plugin-manager location="zellij:plugin-manager"
     about location="zellij:about"
+
+    autolock location="https://github.com/fresh2dev/zellij-autolock/releases/latest/download/zellij-autolock.wasm" {
+        is_enabled true
+        triggers "nvim|vim|fzf|zoxide|atuin"
+        reaction_seconds "0.1"
+    }
 }
 
 // Plugins to load in the background when a new session starts
 // eg. "file:/path/to/my-plugin.wasm"
 // eg. "https://example.com/my-plugin.wasm"
 load_plugins {
-
+    autolock
 }
 
 theme "catppuccin-mocha"
@@ -251,7 +273,7 @@ default_layout "custom"
 // Choose the mode that zellij uses when starting up.
 // Default: normal
 //
-// default_mode "locked"
+//default_mode "locked"
 
 // Toggle enabling the mouse mode.
 // On certain configurations, or terminals this could
