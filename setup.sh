@@ -90,6 +90,7 @@ if [ "$IS_ARCH_BASED" = "true" ]; then
   read -r answer
   if [ "$answer" = "y" ] || [ "$answer" = "Y" ]; then
     $SUDO pacman -S foot grim slurp wl-clipboard libnotify brightnessctl playerctl hyprland hyprpicker hypridle hyprlock hyprsunset keepassxc
+    $IS_DESKTOP="true"
   fi
 else
   printf "%sSkipping packages install because the script is not running on an Arch based distro!%s\n" "$YELLOW" "$RESET"
@@ -155,8 +156,11 @@ fi
 
 # TODO: Handle conflicting files using adopt or override
 stow -R .
-ln -sf "$CHOSEN_PATH/dotfiles/.bash_profile" ~/.bash_profile
+
 ln -sf "$CHOSEN_PATH/dotfiles/.bashrc" ~/.bashrc
+if [ "$IS_DESKTOP" = "true" ]; then
+  ln -sf "$CHOSEN_PATH/dotfiles/.bash_profile" ~/.bash_profile
+fi
 
 # shellcheck source=/dev/null
 . ~/.bashrc
