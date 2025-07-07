@@ -41,7 +41,7 @@ keybinds clear-defaults=true {
         bind "z" { TogglePaneFrames; SwitchToMode "Normal"; }
         bind "w" { ToggleFloatingPanes; SwitchToMode "Normal"; }
         bind "e" { TogglePaneEmbedOrFloating; SwitchToMode "Normal"; }
-        bind "c" { SwitchToMode "RenamePane"; PaneNameInput 0;}
+        bind "c" { SwitchToMode "RenamePane"; PaneNameInput 0; }
     }
     tab {
         bind "Ctrl t" { SwitchToMode "Normal"; }
@@ -151,9 +151,9 @@ keybinds clear-defaults=true {
 
         // Search and open Obsidian notes in a Zellij floating pane using fzf, bat and Neovim
         bind "Alt o" {
-            Run "bash" "-c" "find . -type f -name '*.md' | fzf --prompt 'Notes> ' --preview 'bat -p --color=always {}' --bind 'enter:become(nvim {+})'" {
+            Run "bash" "-c" "find . -type f -name '*.md' ! -path './99-template/template.md' | sort -r | fzf --prompt 'Notes> ' --preview 'bat -p --color=always {}' --bind 'enter:become(nvim {+})'" {
                 name "Notes"
-                cwd "/home/leo/Documents/vaults"
+                cwd "/home/leo/Documents/vaults/Main/"
                 floating true
                 move_to_focused_tab true
                 close_on_exit true
