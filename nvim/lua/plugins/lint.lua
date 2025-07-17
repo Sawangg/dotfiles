@@ -22,7 +22,9 @@ return {
       vim.api.nvim_create_autocmd({ "BufWritePost", "BufEnter", "InsertLeave" }, {
         group = vim.api.nvim_create_augroup("nvim_lint", { clear = true }),
         callback = function()
-          lint.try_lint()
+          if vim.bo.modifiable then
+            lint.try_lint()
+          end
         end,
       })
     end,
