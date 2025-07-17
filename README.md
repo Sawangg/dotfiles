@@ -1,6 +1,6 @@
 # Sawang's dotfiles
 
-This is my dotfiles repository containing all of my configs. I tried to achieve a consistent workflow for development as well as trying to be the perfect blend between useful, secure and pretty. Here is a list of features:
+This is my dotfiles repository containing all of my configs. I tried to achieve a consistent workflow for development with a blend between useful, secure and pretty. Here is a list of features:
 
 - Minimalist & terminal focused, everything you need is inside the terminal
 - Keyboard centric, move fast using the power of good mappings
