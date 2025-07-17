@@ -2,70 +2,72 @@
 -- See `:help vim.opt`
 -- For more options, you can see `:help option-list`
 
-local o = vim.opt
-
 -- Make line numbers default
-o.number = true
-o.relativenumber = true
+vim.o.number = true
+vim.o.relativenumber = true
 
 -- Don't show the mode, since it's already in the status line
-o.showmode = false
+vim.o.showmode = false
 
 -- Sync clipboard between OS and Neovim.
 --  Remove this option if you want your OS clipboard to remain independent.
 --  See `:help 'clipboard'`
-o.clipboard = "unnamedplus"
+vim.schedule(function()
+  vim.o.clipboard = "unnamedplus"
+end)
 
 -- Enable break indent
-o.breakindent = true
+vim.o.breakindent = true
 
 -- Save undo history
-o.undofile = true
+vim.o.undofile = true
 
 -- Case-insensitive searching UNLESS \C or one or more capital letters in the search term
-o.ignorecase = true
-o.smartcase = true
+vim.o.ignorecase = true
+vim.o.smartcase = true
 
 -- Keep signcolumn on by default
-o.signcolumn = "yes"
+vim.o.signcolumn = "yes"
 
 -- Decrease update time
-o.updatetime = 250
+vim.o.updatetime = 250
 
 -- Decrease mapped sequence wait time
 -- Displays which-key popup sooner
-o.timeoutlen = 300
+vim.o.timeoutlen = 300
 
 -- Configure how new splits should be opened
-o.splitright = true
-o.splitbelow = true
+vim.o.splitright = true
+vim.o.splitbelow = true
 
 -- Sets how neovim will display certain whitespace characters in the editor.
 --  See `:help 'list'`
 --  and `:help 'listchars'`
-o.list = true
-o.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
+vim.o.list = true
+vim.opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
 
 -- Preview substitutions live, as you type!
-o.inccommand = "split"
+vim.o.inccommand = "split"
 
 -- Show which line your cursor is on
-o.cursorline = true
+vim.o.cursorline = true
 
 -- Minimal number of screen lines to keep above and below the cursor.
-o.scrolloff = 10
+vim.o.scrolloff = 10
+
+-- If performing an operation that would fail due to unsaved changes in the buffer (like `:q`),
+-- instead raise a dialog asking if you wish to save the current file(s)
+-- See `:help 'confirm'`
+vim.o.confirm = true
 
 -- 2 spaces indent
-o.expandtab = true -- expand tab input with spaces characters
-o.smartindent = true -- syntax aware indentations for newline inserts
-o.tabstop = 2 -- num of space characters per tab
-o.shiftwidth = 2 -- spaces per indentation level
+vim.o.expandtab = true -- expand tab input with spaces characters
+vim.o.smartindent = true -- syntax aware indentations for newline inserts
+vim.o.tabstop = 2 -- num of space characters per tab
+vim.o.shiftwidth = 2 -- spaces per indentation level
 
 -- Set highlight on search, but clear on pressing <Esc> in normal mode
-o.hlsearch = true
+vim.o.hlsearch = true
 
 -- Set the word wrap to 120 characters
-o.textwidth = 120
-
--- Set characters conceal for Obsidian notes
-o.conceallevel = 1
+vim.o.textwidth = 120
