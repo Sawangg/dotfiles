@@ -14,3 +14,7 @@ map("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostic [Q]ui
 
 -- Oil bind
 map("n", "<leader>o", ":Oil<CR>", { desc = "Open [O]il" })
+
+-- Center the page when using <c-d> and <c-u>
+map("n", "<C-d>", "<C-d>zz", { desc = "Scroll down and center" })
+map("n", "<C-u>", "<C-u>zz", { desc = "Scroll up and center" })
