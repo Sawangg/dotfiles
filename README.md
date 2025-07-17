@@ -6,7 +6,7 @@ This is my dotfiles repository containing all of my configs. I tried to achieve 
 - Keyboard centric, move fast using the power of good mappings
 - Using default mappings for all apps with opt-in custom ones, no need to learn new keybindings
 - Full support for different keyboard layouts (`qwerty` & `azerty`)
-- Consistent theme across all apps with soothing colors to limit eye strain
+- Consistent theme across all apps with soothing colors to limit eyestrain
 - Leaner version usable in devcontainers
 - Compatible with `systemd` free distros like `Artix Linux` and `WSL` on Windows
 - Only using open-source software

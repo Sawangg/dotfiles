@@ -3,7 +3,8 @@ return {
     "saghen/blink.cmp",
     dependencies = { "fang2hou/blink-copilot", "rafamadriz/friendly-snippets" },
     version = "*",
-
+    --- @module 'blink.cmp'
+    --- @type blink.cmp.Config
     opts = {
       -- 'default' for mappings similar to built-in completion
       -- 'super-tab' for mappings similar to vscode (tab to accept, arrow keys to navigate)

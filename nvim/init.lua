@@ -30,7 +30,7 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
--- Set up lazy and auto import the plugins folder
+-- Set up lazy and auto import the plugin's folder
 require("lazy").setup({
   spec = {
     { import = "plugins" },
