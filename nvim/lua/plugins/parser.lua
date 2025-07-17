@@ -13,12 +13,4 @@ return {
       require("nvim-treesitter.configs").setup(opts)
     end,
   },
-  { -- Show code context
-    "nvim-treesitter/nvim-treesitter-context",
-    dependencies = { "nvim-treesitter/nvim-treesitter" },
-    event = "VeryLazy",
-    opts = {
-      enable = true,
-    },
-  },
 }
