@@ -147,11 +147,21 @@ keybinds clear-defaults=true {
         bind "Alt -" { Resize "Decrease"; }
         bind "Alt =" "Alt +" { Resize "Increase"; }
 
-        bind "Alt f" { ToggleFloatingPanes; }
+        bind "Alt q" { ToggleFloatingPanes; }
+
+        // Quickly switch between sessions
+        bind "Alt f" {
+            Run "bash" "-c" "zellij ls -s | sort | fzf --reverse --info inline | xargs -r -I {} zellij pipe --plugin https://github.com/mostafaqanbaryan/zellij-switch/releases/download/0.2.1/zellij-switch.wasm -- '-s={} -l custom'" {
+                name "Session Switcher"
+                floating true
+                move_to_focused_tab true
+                close_on_exit true
+            }
+        }
 
         // Search and open Obsidian notes in a Zellij floating pane using fzf, bat and Neovim
         bind "Alt o" {
-            Run "bash" "-c" "find . -type f -name '*.md' ! -path './99-template/template.md' | sort -r | fzf --prompt 'Notes> ' --preview 'bat -p --color=always {}' --bind 'enter:become(nvim {+})'" {
+            Run "bash" "-c" "find . -type f -name '*.md' ! -path './99-template/template.md' | sort | fzf --reverse --info inline --preview 'bat -p --color=always {}' --bind 'enter:become(nvim {+})'" {
                 name "Notes"
                 cwd "/home/leo/Documents/vaults/Main/"
                 floating true
@@ -159,6 +169,7 @@ keybinds clear-defaults=true {
                 close_on_exit true
             }
         }
+
         bind "Ctrl q" {
             LaunchOrFocusPlugin "session-manager" {
                 floating true
