@@ -18,9 +18,8 @@ CHOICE=$(
   { printf "%s\n" $SESSION_LIST
     printf "%s" "$DIRS_WITHOUT_SESSION"
   } | fzf --reverse \
-      --bind "ctrl-d:execute-silent(zellij delete-session {} && notify-send 'Deleted session: {}')+abort" \
-      --header="Choose session (Enter: switch, Ctrl-D: delete)" \
-      --prompt="> "
+          --bind "ctrl-d:execute-silent(zellij delete-session -f {})+abort" \
+          --header="Choose session (Enter: switch, Ctrl-D: delete)"
 )
 
 if [ -z "$CHOICE" ]; then
