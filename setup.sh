@@ -80,6 +80,8 @@ if ! command -v stow > /dev/null 2>&1; then
 fi
 
 # Ask the user if they want to install needed packages
+IS_DESKTOP="false"
+
 if [ "$IS_ARCH_BASED" = "true" ]; then
   printf "%sDo you want to install the packages to make Neovim work? (y/N): %s" "$CYAN" "$RESET"
   read -r answer
