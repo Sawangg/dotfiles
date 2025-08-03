@@ -2,11 +2,11 @@
 
 set -euf
 
-readonly RESET="\033[0m"
-readonly RED="\033[0;31m"
-readonly GREEN="\033[0;32m"
-readonly YELLOW="\033[1;33m"
-readonly CYAN="\033[0;36m"
+RESET=$(printf '\033[0m')
+RED=$(printf '\033[0;31m')
+GREEN=$(printf '\033[0;32m')
+YELLOW=$(printf '\033[0;33m')
+CYAN=$(printf '\033[0;36m')
 
 append_line() {
     new_line="$1"
@@ -90,7 +90,7 @@ if [ "$IS_ARCH_BASED" = "true" ]; then
   read -r answer
   if [ "$answer" = "y" ] || [ "$answer" = "Y" ]; then
     $SUDO pacman -S foot grim slurp wl-clipboard libnotify brightnessctl playerctl hyprland hyprpicker hypridle hyprlock hyprsunset keepassxc
-    $IS_DESKTOP="true"
+    IS_DESKTOP="true"
   fi
 else
   printf "%sSkipping packages install because the script is not running on an Arch based distro!%s\n" "$YELLOW" "$RESET"
