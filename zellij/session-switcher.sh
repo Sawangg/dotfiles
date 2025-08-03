@@ -18,6 +18,7 @@ CHOICE=$(
   { printf "%s\n" $SESSION_LIST
     printf "%s" "$DIRS_WITHOUT_SESSION"
   } | fzf --reverse \
+          --info inline \
           --bind "ctrl-d:execute-silent(zellij delete-session -f {})+abort" \
           --header="Enter: switch, Ctrl-D: delete"
 )
