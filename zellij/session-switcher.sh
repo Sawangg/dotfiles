@@ -1,8 +1,8 @@
 #!/bin/sh
 
 DIRS="$HOME/Documents"
-SESSION_LIST=$(zellij list-sessions -n | awk '{print $1}')
-DIR_PATHS=$(find $DIRS -mindepth 1 -maxdepth 1 -type d)
+SESSION_LIST=$(zellij list-sessions -n | awk '{print $1}' | sort)
+DIR_PATHS=$(find $DIRS -mindepth 1 -maxdepth 1 -type d | sort)
 
 DIRS_WITHOUT_SESSION=""
 for DIR in $DIR_PATHS; do
@@ -13,7 +13,7 @@ for DIR in $DIR_PATHS; do
   fi
 done
 
-CHOICE=$( (printf "%s\n" $SESSION_LIST; printf "%s" "$DIRS_WITHOUT_SESSION") | fzf )
+CHOICE=$( (printf "%s\n" $SESSION_LIST; printf "%s" "$DIRS_WITHOUT_SESSION") | fzf --reverse)
 
 if [ -z "$CHOICE" ]; then
   exit 1
