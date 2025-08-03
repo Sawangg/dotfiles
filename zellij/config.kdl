@@ -151,7 +151,7 @@ keybinds clear-defaults=true {
 
         // Quickly switch between sessions
         bind "Alt f" {
-            Run "bash" "-c" "zellij ls -s | sort | fzf --reverse --info inline | xargs -r -I {} zellij pipe --plugin https://github.com/mostafaqanbaryan/zellij-switch/releases/download/0.2.1/zellij-switch.wasm -- '-s={} -l custom'" {
+            Run "bash" "-c" "$HOME/.config/zellij/session-switcher.sh" {
                 name "Session Switcher"
                 floating true
                 move_to_focused_tab true
