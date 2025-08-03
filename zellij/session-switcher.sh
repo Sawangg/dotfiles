@@ -1,13 +1,14 @@
 #!/bin/sh
 
 DIRS="$HOME/Documents"
-SESSION_LIST=$(zellij list-sessions -n | awk '{print $1}' | sort)
+CURRENT_SESSION=$(zellij ls -n | grep '(current)' | awk '{print $1}')
+SESSION_LIST=$(zellij list-sessions -n | awk '{print $1}' | sort | grep -vx "$CURRENT_SESSION")
 DIR_PATHS=$(find $DIRS -mindepth 1 -maxdepth 1 -type d | sort)
 
 DIRS_WITHOUT_SESSION=""
 for DIR in $DIR_PATHS; do
   TITLE=$(basename "$DIR")
-  if ! echo "$SESSION_LIST" | grep -qx "$TITLE"; then
+  if ! echo "$SESSION_LIST" | grep -qx "$TITLE" && [ "$TITLE" != "$CURRENT_SESSION" ]; then
     DIRS_WITHOUT_SESSION="$DIRS_WITHOUT_SESSION$DIR
 "
   fi
