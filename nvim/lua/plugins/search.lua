@@ -7,6 +7,16 @@ return {
     },
     config = function()
       local fzf = require("fzf-lua")
+
+      fzf.setup({
+        hls = {
+          normal = "Normal",
+          border = "Normal",
+          preview_normal = "Normal",
+          preview_border = "Normal",
+        },
+      })
+
       vim.keymap.set("n", "<leader>sh", fzf.help_tags, { desc = "[S]earch [H]elp" })
       vim.keymap.set("n", "<leader>sk", fzf.keymaps, { desc = "[S]earch [K]eymaps" })
       vim.keymap.set("n", "<leader>sf", fzf.files, { desc = "[S]earch [F]iles" })
@@ -19,7 +29,7 @@ return {
       vim.keymap.set("n", "<leader><leader>", fzf.buffers, { desc = "[ ] Find existing buffers" })
 
       vim.keymap.set("n", "<leader>/", function()
-        fzf.blines({ fzf_opts = { ["--layout"] = "reverse-list" }, winopts = { preview = { hidden = "hidden" } } })
+        fzf.blines({ fzf_opts = { ["--layout"] = "reverse-list" }, winopts = { preview = { hidden = true } } })
       end, { desc = "[/] Fuzzily search in current buffer" })
 
       vim.keymap.set("n", "<leader>s/", function()
