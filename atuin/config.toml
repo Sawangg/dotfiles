@@ -1,5 +1,6 @@
-auto_sync = false
-# sync_frequency = "1m"
+auto_sync = true
+sync_address = "https://atuin.internal.leomercier.dev"
+sync_frequency = "5m"
 
 style = "compact"
 inline_height = 0
@@ -14,7 +15,6 @@ history_filter = [
    "^rm",
    "^shred",
    "^z",
-   "^zellij"
 ]
 
 enter_accept = true
