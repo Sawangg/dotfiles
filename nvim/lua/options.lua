@@ -1,4 +1,3 @@
--- [[ Setting options ]]
 -- See `:help vim.opt`
 -- For more options, you can see `:help option-list`
 
@@ -74,3 +73,6 @@ vim.o.textwidth = 120
 
 -- Disable swap files
 vim.o.swapfile = false
+
+-- Rounded borders for floating windows
+vim.o.winborder = "rounded"

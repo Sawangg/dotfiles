@@ -1,7 +1,7 @@
 return {
   { -- Autocompletion
     "saghen/blink.cmp",
-    dependencies = { "fang2hou/blink-copilot", "rafamadriz/friendly-snippets" },
+    dependencies = { "fang2hou/blink-copilot" },
     version = "*",
     --- @module 'blink.cmp'
     --- @type blink.cmp.Config
@@ -16,13 +16,8 @@ return {
       },
 
       sources = {
-        default = { "lazydev", "copilot", "lsp", "path", "snippets", "buffer" },
+        default = { "copilot", "lsp", "path", "snippets", "buffer" },
         providers = {
-          lazydev = {
-            name = "LazyDev",
-            module = "lazydev.integrations.blink",
-            score_offset = 100,
-          },
           copilot = {
             name = "copilot",
             module = "blink-copilot",

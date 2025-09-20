@@ -27,7 +27,4 @@ return {
       format_on_save = { timeout_ms = 500 },
     },
   },
-  { -- Set buffer options automatically
-    "tpope/vim-sleuth",
-  },
 }
