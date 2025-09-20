@@ -27,15 +27,15 @@ return {
     config = function(_, opts)
       local capabilities = require("blink.cmp").get_lsp_capabilities()
 
-      for name, user_cfg in pairs(opts.servers) do
-        local final_cfg = vim.tbl_deep_extend("force", { capabilities = capabilities }, user_cfg)
-        vim.lsp.config(name, final_cfg)
-      end
-
       require("mason-lspconfig").setup({
         ensure_installed = vim.tbl_keys(opts.servers or {}),
         automatic_installation = true,
       })
+
+      for name, user_cfg in pairs(opts.servers) do
+        local final_cfg = vim.tbl_deep_extend("force", { capabilities = capabilities }, user_cfg)
+        vim.lsp.config(name, final_cfg)
+      end
 
       vim.diagnostic.config({
         severity_sort = true,
