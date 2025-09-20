@@ -18,3 +18,13 @@ map("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostic [Q]ui
 -- Center the page when using <C-d> and <C-u>
 map("n", "<C-u>", "<C-u>zz", { desc = "Scroll up and center" })
 map("n", "<C-d>", "<C-d>zz", { desc = "Scroll down and center" })
+
+local fzf = require("fzf-lua")
+
+map("n", "gd", fzf.lsp_definitions, { desc = "[G]oto [D]efinition" })
+map("n", "gD", vim.lsp.buf.declaration, { desc = "[G]oto [D]eclaration" })
+map("n", "gr", fzf.lsp_references, { desc = "[G]oto [R]eferences" })
+map("n", "gI", fzf.lsp_implementations, { desc = "[G]oto [I]mplementation" })
+map("n", "<leader>D", fzf.lsp_typedefs, { desc = "Type [D]efinition" })
+map("n", "<leader>ds", fzf.lsp_document_symbols, { desc = "[D]ocument [S]ymbols" })
+map("n", "<leader>ws", fzf.lsp_workspace_symbols, { desc = "[W]orkspace [S]ymbols" })
