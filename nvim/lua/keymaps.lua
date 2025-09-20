@@ -1,10 +1,7 @@
 -- [[ Keymaps ]]
 --  See `:help vim.keymap.set()`
 
-local function map(mode, l, r, opts)
-  opts = opts or {}
-  vim.keymap.set(mode, l, r, opts)
-end
+local map = vim.keymap.set
 
 map("n", "<Esc>", "<cmd>nohlsearch<CR>")
 
