@@ -7,18 +7,6 @@ return {
       -- Installer of LSP tools to stdpath
       { "mason-org/mason.nvim", opts = {} },
       "williamboman/mason-lspconfig.nvim",
-
-      -- Useful status updates for LSP
-      {
-        "j-hui/fidget.nvim",
-        opts = {
-          notification = {
-            window = {
-              winblend = 0, -- No background
-            },
-          },
-        },
-      },
     },
     opts = {
       servers = {
@@ -63,7 +51,7 @@ return {
       local capabilities = require("blink.cmp").get_lsp_capabilities()
 
       -- TODO: Fix this because settings are not applied when using mason-lspconfig
-      require("lspconfig").harper_ls.setup({
+      vim.lsp.config("harper_ls", {
         settings = {
           ["harper-ls"] = {
             linters = {
