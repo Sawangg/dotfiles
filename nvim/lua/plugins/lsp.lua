@@ -11,35 +11,30 @@ return {
     opts = {
       servers = {
         lua_ls = {},
-        harper_ls = {},
+        harper_ls = {
+          settings = {
+            ["harper-ls"] = {
+              linters = {
+                SentenceCapitalization = false,
+                SpellCheck = false,
+                ToDoHyphen = false,
+              },
+            },
+          },
+        },
       },
     },
     config = function(_, opts)
       local capabilities = require("blink.cmp").get_lsp_capabilities()
 
-      -- TODO: Fix this because settings are not applied when using mason-lspconfig
-      vim.lsp.config("harper_ls", {
-        settings = {
-          ["harper-ls"] = {
-            linters = {
-              SentenceCapitalization = false,
-              SpellCheck = false,
-              ToDoHyphen = false,
-            },
-          },
-        },
-      })
+      for name, user_cfg in pairs(opts.servers) do
+        local final_cfg = vim.tbl_deep_extend("force", { capabilities = capabilities }, user_cfg)
+        vim.lsp.config(name, final_cfg)
+      end
 
       require("mason-lspconfig").setup({
         ensure_installed = vim.tbl_keys(opts.servers or {}),
         automatic_installation = true,
-        handlers = {
-          function(server_name)
-            local server = opts.servers[server_name] or {}
-            server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
-            require("lspconfig")[server_name].setup(server)
-          end,
-        },
       })
 
       vim.diagnostic.config({
@@ -54,19 +49,7 @@ return {
             [vim.diagnostic.severity.HINT] = "󰌶 ",
           },
         } or {},
-        virtual_text = {
-          source = "if_many",
-          spacing = 2,
-          format = function(diagnostic)
-            local diagnostic_message = {
-              [vim.diagnostic.severity.ERROR] = diagnostic.message,
-              [vim.diagnostic.severity.WARN] = diagnostic.message,
-              [vim.diagnostic.severity.INFO] = diagnostic.message,
-              [vim.diagnostic.severity.HINT] = diagnostic.message,
-            }
-            return diagnostic_message[diagnostic.severity]
-          end,
-        },
+        virtual_text = { source = "if_many", spacing = 2 },
       })
     end,
   },
