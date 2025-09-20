@@ -15,6 +15,6 @@ map("n", "<leader>gb", "<CMD>Gitsigns toggle_current_line_blame<CR>")
 map("n", "<leader>e", vim.diagnostic.open_float, { desc = "Show diagnostic [E]rror messages" })
 map("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostic [Q]uickfix list" })
 
--- Center the page when using <c-d> and <c-u>
-map("n", "<C-d>", "<C-d>zz", { desc = "Scroll down and center" })
+-- Center the page when using <C-d> and <C-u>
 map("n", "<C-u>", "<C-u>zz", { desc = "Scroll up and center" })
+map("n", "<C-d>", "<C-d>zz", { desc = "Scroll down and center" })
