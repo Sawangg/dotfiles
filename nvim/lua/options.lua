@@ -71,3 +71,6 @@ vim.o.hlsearch = true
 
 -- Set the word wrap to 120 characters
 vim.o.textwidth = 120
+
+-- Disable swap files
+vim.o.swapfile = false
