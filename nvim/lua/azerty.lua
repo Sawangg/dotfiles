@@ -1,9 +1,6 @@
 -- Handle Azerty layout
 
-local function map(mode, l, r, opts)
-  opts = opts or {}
-  vim.keymap.set(mode, l, r, opts)
-end
+local map = vim.keymap.set
 
 map({ "n", "v" }, "à", "0", { silent = true })
 map({ "n", "v" }, "&", "1", { silent = true })
