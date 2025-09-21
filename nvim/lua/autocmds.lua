@@ -21,10 +21,11 @@ vim.api.nvim_create_autocmd("VimEnter", {
 })
 
 vim.api.nvim_create_autocmd("LspAttach", {
-  desc = "Highlight references when the cursor is on a symbol",
   group = vim.api.nvim_create_augroup("lsp-attach", { clear = true }),
   callback = function(event)
     local client = vim.lsp.get_client_by_id(event.data.client_id)
+
+    -- Highlight references when the cursor is on a symbol
     if client and client.server_capabilities.documentHighlightProvider then
       vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
         buffer = event.buf,
@@ -33,6 +34,16 @@ vim.api.nvim_create_autocmd("LspAttach", {
       vim.api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI" }, {
         buffer = event.buf,
         callback = vim.lsp.buf.clear_references,
+      })
+    end
+
+    -- Auto-format on save
+    if client and client:supports_method("textDocument/formatting") then
+      vim.api.nvim_create_autocmd({ "BufWritePre" }, {
+        buffer = event.buf,
+        callback = function()
+          vim.lsp.buf.format({ bufnr = event.buf, id = client.id })
+        end,
       })
     end
   end,
