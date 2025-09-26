@@ -166,9 +166,20 @@ keybinds clear-defaults=true {
             }
         }
 
-        // Search and open Obsidian notes in a Zellij floating pane using fzf, bat and Neovim
+        // Crate a new note in a Zellij floating pane and open it in the default editor
+        bind "Alt Shift o" {
+            Run "bash" "-c" "read -p 'Please enter the new note name: ' notename && [ -n \"$notename\" ] && filename=\"${notename// /-}.md\" && echo -e \"---\\ntitle: \\\"$notename\\\"\\ndate: \\\"$(date +%Y-%m-%d)\\\"\\ntags:\\n    - New\\n---\\n\\n# $notename\\n\\n---\\n\\n# References\" > \"$filename\" && $EDITOR \"$filename\"" {
+                name "Create a new note"
+                cwd "/home/leo/Documents/vaults/Main/0-inbox/"
+                floating true
+                move_to_focused_tab true
+                close_on_exit true
+            }
+        }
+
+        // Search and open notes in a Zellij floating pane using fzf, bat and the default edtior
         bind "Alt o" {
-            Run "bash" "-c" "find . -type f -name '*.md' ! -path './99-template/template.md' | sort | fzf --reverse --info inline --preview 'bat -p --color=always {}' --bind 'enter:become(nvim {+})'" {
+            Run "bash" "-c" "find . -type f -name '*.md' ! -path './99-template/template.md' | sort | fzf --reverse --info inline --preview 'bat -p --color=always {}' --bind 'enter:become($EDITOR {+})'" {
                 name "Notes"
                 cwd "/home/leo/Documents/vaults/Main/"
                 floating true
