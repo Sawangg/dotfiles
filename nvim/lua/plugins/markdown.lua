@@ -1,7 +1,7 @@
 return {
   { -- Better Markdown rendering
     "MeanderingProgrammer/render-markdown.nvim",
-    ft = { "markdown", "codecompanion" },
+    ft = { "markdown" },
     opts = {},
     dependencies = {
       "nvim-treesitter/nvim-treesitter",

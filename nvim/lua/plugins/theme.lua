@@ -14,7 +14,7 @@ return {
     },
     init = function()
       vim.cmd.colorscheme("catppuccin") -- Default colorscheme
-      vim.cmd.hi("Comment gui=none") -- Disable the default gui on launch
+      vim.cmd.hi("Comment gui=none")    -- Disable the default gui on launch
     end,
   },
   {
@@ -27,16 +27,9 @@ return {
       -- You can configure sections in the statusline by overriding their
       -- default behavior. For example, here we set the section for
       -- cursor location to LINE:COLUMN
-      ---@diagnostic disable-next-line: duplicate-set-field
       statusline.section_location = function()
         return "%2l:%-2v"
       end
     end,
-  },
-  { -- Highlight todo, notes, etc in comments
-    "folke/todo-comments.nvim",
-    event = "VimEnter",
-    dependencies = { "nvim-lua/plenary.nvim" },
-    opts = { signs = false },
   },
 }
