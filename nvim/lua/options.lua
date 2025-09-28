@@ -48,7 +48,7 @@ vim.o.encoding = "UTF-8"                -- Set encoding
 vim.opt.clipboard:append("unnamedplus") -- Use system clipboard
 vim.o.swapfile = false                  -- Disable swap files
 vim.o.errorbells = false                -- No error bells
-vim.o.confirm = true                    -- ask what do so about unsaved changes
+vim.o.confirm = true                    -- Ask what do so about unsaved changes
 
 -- Split behavior
 vim.o.splitright = true -- Vertical splits go right
