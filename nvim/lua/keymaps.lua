@@ -17,9 +17,11 @@ map("n", "<leader>f", vim.lsp.buf.format, { desc = "[F]ormat current buffer" })
 map("n", "<leader>e", vim.diagnostic.open_float, { desc = "Show diagnostic [E]rror messages" })
 map("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostic [Q]uickfix list" })
 
--- Center the page when using <C-d> and <C-u>
-map("n", "<C-u>", "<C-u>zz", { desc = "Scroll up and center" })
-map("n", "<C-d>", "<C-d>zz", { desc = "Scroll down and center" })
+-- Center screen when jumping
+map("n", "<C-u>", "<C-u>zz", { desc = "Half page up (centered)" })
+map("n", "<C-d>", "<C-d>zz", { desc = "Half page down (centered)" })
+map("n", "n", "nzzzv", { desc = "Next search result (centered)" })
+map("n", "N", "Nzzzv", { desc = "Previous search result (centered)" })
 
 -- Better indenting in visual mode
 map("v", "<", "<gv", { desc = "Indent left and reselect" })
