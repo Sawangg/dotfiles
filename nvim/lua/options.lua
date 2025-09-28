@@ -36,6 +36,7 @@ vim.o.winborder = "rounded" -- Rounded borders for floating windows
 vim.o.showmode = false -- Don't show the mode (we're using a custom statusline)
 vim.o.list = true -- Show invisible characters
 vim.opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" } -- List of characters to show
+vim.opt.fillchars = { eob = " " } -- Disable end of buffer characters
 
 -- File handling
 vim.o.updatetime = 250 -- Faster completion
