@@ -21,6 +21,10 @@ map("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostic [Q]ui
 map("n", "<C-u>", "<C-u>zz", { desc = "Scroll up and center" })
 map("n", "<C-d>", "<C-d>zz", { desc = "Scroll down and center" })
 
+-- Better indenting in visual mode
+map("v", "<", "<gv", { desc = "Indent left and reselect" })
+map("v", ">", ">gv", { desc = "Indent right and reselect" })
+
 local fzf = require("fzf-lua")
 
 map("n", "gd", fzf.lsp_definitions, { desc = "[G]oto [D]efinition" })
