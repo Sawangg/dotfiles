@@ -28,7 +28,6 @@ vim.o.inccommand = "split" -- Preview of substitutions as you type
 -- Visual settings
 vim.o.termguicolors = true -- Enable 24-bit colors
 vim.o.signcolumn = "yes" -- Always show sign column
-vim.o.showmatch = true -- Highlight matching brackets
 vim.o.cmdheight = 1 -- Command line height
 vim.o.pumblend = 10 -- Pop-up menu transparency
 vim.o.winblend = 0 -- Floating window transparency
