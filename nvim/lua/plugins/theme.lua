@@ -6,15 +6,15 @@ return {
     opts = {
       transparent_background = true,
       integrations = {
-        blink_cmp = true,
-        fidget = true,
         mason = true,
-        which_key = true,
+        diffview = true,
       },
     },
     init = function()
-      vim.cmd.colorscheme("catppuccin") -- Default colorscheme
-      vim.cmd.hi("Comment gui=none")    -- Disable the default gui on launch
+      vim.cmd.colorscheme("catppuccin-mocha") -- Default colorscheme
+      vim.cmd.hi("Comment gui=none")          -- Disable the default gui on launch
+      vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
+      vim.api.nvim_set_hl(0, "NormalNC", { bg = "none" })
     end,
   },
   {
