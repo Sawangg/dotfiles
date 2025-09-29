@@ -8,7 +8,15 @@ return {
     },
     opts = {
       servers = {
-        lua_ls = {},
+        lua_ls = {
+          settings = {
+            Lua = {
+              workspace = {
+                library = vim.api.nvim_get_runtime_file("", true),
+              }
+            },
+          },
+        },
         harper_ls = {
           settings = {
             ["harper-ls"] = {
@@ -28,7 +36,7 @@ return {
                 ["http://json.schemastore.org/github-workflow"] = ".github/workflows/*",
                 ["http://json.schemastore.org/github-action"] = ".github/action.{yml,yaml}",
                 ["http://json.schemastore.org/prettierrc"] = ".prettierrc.{yml,yaml}",
-                ["http://json.schemastore.org/kustomization"] = "kustomization.{yml,yaml}",
+                ["https://www.schemastore.org/kustomization.json"] = "kustomization.{yml,yaml}",
                 ["http://json.schemastore.org/ansible-playbook"] = "*play*.{yml,yaml}",
                 ["http://json.schemastore.org/chart"] = "Chart.{yml,yaml}",
                 ["https://json.schemastore.org/gitlab-ci"] = "*gitlab-ci*.{yml,yaml}",
