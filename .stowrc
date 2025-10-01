@@ -1,5 +1,6 @@
 -v
---target=~/.config
+--ignore=.git/
+--ignore=.gitattributes
 --ignore=.stowrc
 --ignore=.bashrc
 --ignore=.bash_profile

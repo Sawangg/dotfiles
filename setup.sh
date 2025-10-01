@@ -98,8 +98,6 @@ else
   printf "%sSkipping packages install because the script is not running on an Arch based distro!%s\n" "$YELLOW" "$RESET"
 fi
 
-# TODO: Prompt the user to choose for which system user the dotfiles will be installed for
-
 # Ask the user to enter a path to store the dotfiles
 printf "%sEnter the full path where the dotfiles will be saved. (Default: ~/Documents/dotfiles/): %s" "$CYAN" "$RESET"
 read -r CHOSEN_PATH
@@ -148,23 +146,63 @@ if [ "$answer" = "y" ] || [ "$answer" = "Y" ]; then
     append_line "require(\"azerty\")" "$custom_nvim"
 fi
 
-# Symlink to destination
-printf "%sCreating symlinks...%s\n" "$GREEN" "$RESET"
-cd "$CHOSEN_PATH/dotfiles"
+printf "%sInstall for which system user? (username or 'current' or comma-separated list) [current]: %s" "$CYAN" "$RESET"
+read -r TARGET_USERS
+TARGET_USERS="${TARGET_USERS:-current}"
 
-if [ -d "$HOME/.config" ]; then
-  mkdir -p "$HOME/.config"
+if [ "$TARGET_USERS" = "current" ]; then
+  TARGET_USERS=$(id -un)
 fi
 
-# TODO: Handle conflicting files using adopt or override
-stow -R .
+# Install for each user
+OLD_IFS=$IFS
+IFS=','
+for user in $TARGET_USERS; do
+  user=$(printf "%s" "$user" | xargs)
+  if [ -z "$user" ]; then
+    continue
+  fi
+  TARGET_HOME=$(getent passwd "$user" | cut -d: -f6 || printf "")
+  if [ -z "$TARGET_HOME" ]; then
+    printf "%s✗ User '%s' not found, skipping.%s\n" "$RED" "$user" "$RESET"
+    continue
+  fi
 
-ln -sf "$CHOSEN_PATH/dotfiles/.bashrc" ~/.bashrc
-if [ "$IS_DESKTOP" = "true" ]; then
-  ln -sf "$CHOSEN_PATH/dotfiles/.bash_profile" ~/.bash_profile
-fi
+  printf "%sInstalling dotfiles for user: %s (home: %s)%s\n" "$CYAN" "$user" "$TARGET_HOME" "$RESET"
 
-# shellcheck source=/dev/null
-. ~/.bashrc
+  # Ensure .config exists
+  if [ ! -d "$TARGET_HOME/.config" ]; then
+    if [ -n "$SUDO" ]; then
+      $SUDO mkdir -p "$TARGET_HOME/.config" && $SUDO chown -R "$user":"$user" "$TARGET_HOME/.config"
+    else
+      mkdir -p "$TARGET_HOME/.config" && chown -R "$user":"$user" "$TARGET_HOME/.config"
+    fi
+  fi
 
-printf "%s✓ Dotfiles setup completed successfully! Logout and log back in to see the changes!%s\n" "$GREEN" "$RESET"
+  # Symlink dotfiles using stow
+  # TODO: Handle existing files (backup or skip)
+  if [ -n "$SUDO" ]; then
+    $SUDO -u "$user" stow -d "$CHOSEN_PATH/dotfiles" -t "$TARGET_HOME" -R .
+  else
+    su - "$user" -c stow -d "$CHOSEN_PATH/dotfiles" -t "$TARGET_HOME" -R .
+  fi
+
+  # Setup bashrc and bash_profile symlinks
+  if [ -n "$SUDO" ]; then
+    $SUDO -u "$user" ln -sf "$CHOSEN_PATH/dotfiles/.bashrc" "$TARGET_HOME/.bashrc"
+  else
+    su - "$user" -c "ln -sf '$CHOSEN_PATH/dotfiles/.bashrc' '$TARGET_HOME/.bashrc'"
+  fi
+  if [ "$IS_DESKTOP" = "true" ]; then
+    if [ -n "$SUDO" ]; then
+      $SUDO -u "$user" ln -sf "$CHOSEN_PATH/dotfiles/.bash_profile" "$TARGET_HOME/.bash_profile"
+    else
+      su - "$user" -c "ln -sf '$CHOSEN_PATH/dotfiles/.bash_profile' '$TARGET_HOME/.bash_profile'"
+    fi
+  fi
+
+  printf "%s✓ Installed for %s%s\n" "$GREEN" "$user" "$RESET"
+done
+IFS=$OLD_IFS
+
+printf "%sAll requested installs completed. Logout/login may be required for some changes.%s\n" "$GREEN" "$RESET"

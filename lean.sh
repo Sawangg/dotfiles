@@ -42,7 +42,7 @@ fi
 
 touch "$HOME/dotfiles/nvim/lua/custom.lua"
 
-stow -R .
+stow -t ~/.config -R .
 ln -sf "$HOME/dotfiles/.bashrc" ~/.bashrc
 
 printf "${GREEN}✓ Dotfiles installed successfully${RESET}\n"
