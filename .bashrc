@@ -21,6 +21,7 @@ alias k='kubecolor'
 alias suspend='echo mem | doas /usr/bin/tee /sys/power/state > /dev/null'
 alias hibernate='echo disk | doas /usr/bin/tee /sys/power/state > /dev/null'
 alias update='doas pacman -Syu && yay -Syu'
+alias aws-profile='export AWS_PROFILE=$(sed -n "s/\[\(.*\)\]/\1/gp" ~/.aws/credentials | fzf)'
 
 # Env variables
 export STARSHIP_CONFIG=~/.config/starship/starship.toml
