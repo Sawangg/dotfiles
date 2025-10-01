@@ -33,6 +33,7 @@ vim.o.pumblend = 10 -- Pop-up menu transparency
 vim.o.winblend = 0 -- Floating window transparency
 vim.o.winborder = "rounded" -- Rounded borders for floating windows
 vim.o.showmode = false -- Don't show the mode (we're using a custom statusline)
+vim.o.showtabline = 0 -- Hide the tab pages
 vim.o.list = true -- Show invisible characters
 vim.opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" } -- List of characters to show
 vim.opt.fillchars = { eob = " " } -- Disable end of buffer characters
