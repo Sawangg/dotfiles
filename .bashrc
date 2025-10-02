@@ -24,9 +24,13 @@ alias hibernate='echo disk | doas /usr/bin/tee /sys/power/state > /dev/null'
 alias update='doas pacman -Syu && yay -Syu'
 alias aws-profile='export AWS_PROFILE=$(sed -n "s/\[\(.*\)\]/\1/gp" ~/.aws/credentials | fzf)'
 
-# Env variables
-export STARSHIP_CONFIG=~/.config/starship/starship.toml
-export FZF_DEFAULT_OPTS='--color=bg+:#313244,spinner:#f5e0dc,hl:#f38ba8 --color=fg:#cdd6f4,header:#f38ba8,info:#cba6f7,pointer:#f38ba8 --color=marker:#b4befe,fg+:#cdd6f4,prompt:#cba6f7,hl+:#f38ba8 --color=selected-bg:#45475a'
+# Fzf theme
+export FZF_DEFAULT_OPTS=" \
+  --color=bg+:#313244,spinner:#F5E0DC,hl:#F38BA8 \
+  --color=fg:#CDD6F4,header:#F38BA8,info:#CBA6F7,pointer:#F38BA8 \
+  --color=marker:#B4BEFE,fg+:#CDD6F4,prompt:#CBA6F7,hl+:#F38BA8 \
+  --color=selected-bg:#45475A \
+  --color=border:#6C7086,label:#CDD6F4"
 
 # Eval some apps
 eval "$(starship init bash)"
