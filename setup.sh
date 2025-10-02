@@ -182,9 +182,9 @@ for user in $TARGET_USERS; do
   # Symlink dotfiles using stow
   # TODO: Handle existing files (backup or skip)
   if [ -n "$SUDO" ]; then
-    $SUDO -u "$user" stow -d "$CHOSEN_PATH/dotfiles" -t "$TARGET_HOME" -R .
+    $SUDO -u "$user" stow -d "$CHOSEN_PATH/dotfiles" -t "$TARGET_HOME/.config" -R .
   else
-    su - "$user" -c stow -d "$CHOSEN_PATH/dotfiles" -t "$TARGET_HOME" -R .
+    su - "$user" -c stow -d "$CHOSEN_PATH/dotfiles" -t "$TARGET_HOME/.config" -R .
   fi
 
   # Setup bashrc and bash_profile symlinks
