@@ -24,7 +24,8 @@ alias hibernate='echo disk | doas /usr/bin/tee /sys/power/state > /dev/null'
 alias update='doas pacman -Syu && yay -Syu'
 alias aws-profile='export AWS_PROFILE=$(sed -n "s/\[\(.*\)\]/\1/gp" ~/.aws/credentials | fzf)'
 
-# Fzf theme
+# Env variables
+export STARSHIP_CONFIG=~/.config/starship/starship.toml
 export FZF_DEFAULT_OPTS=" \
   --color=bg+:#313244,spinner:#F5E0DC,hl:#F38BA8 \
   --color=fg:#CDD6F4,header:#F38BA8,info:#CBA6F7,pointer:#F38BA8 \
