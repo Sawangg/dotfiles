@@ -86,7 +86,7 @@ if [ "$IS_ARCH_BASED" = "true" ]; then
   printf "%sDo you want to install the packages to make Neovim work? (y/N): %s" "$CYAN" "$RESET"
   read -r answer
   if [ "$answer" = "y" ] || [ "$answer" = "Y" ]; then
-    $SUDO pacman -S zellij atuin bat neovim fd fzf lsd ripgrep zoxide starship nodejs
+    $SUDO pacman -S zellij atuin bat neovim fd fzf lsd ripgrep zoxide starship lazygit nodejs
   fi
   printf "%sDo you want the full desktop experience? (y/N): %s" "$CYAN" "$RESET"
   read -r answer
