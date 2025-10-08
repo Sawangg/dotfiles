@@ -6,8 +6,6 @@ map("n", "<Esc>", "<CMD>nohlsearch<CR>")
 
 map("n", "<leader>o", "<CMD>Oil<CR>", { desc = "Open [O]il" })
 
-map("n", "<leader>ng", "<CMD>Neogit<CR>", { desc = "Open [N]eo[g]it" })
-
 map("n", "<leader>gp", "<CMD>Gitsigns preview_hunk_inline<CR>")
 map("n", "<leader>gb", "<CMD>Gitsigns toggle_current_line_blame<CR>")
 
