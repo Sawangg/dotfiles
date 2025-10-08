@@ -10,19 +10,23 @@ alias cat='bat'
 alias cd='z'
 alias ls='lsd'
 alias tree='ls --tree'
-alias sudo='doas'
-alias yay='yay --sudo doas --sudoflags -- --save'
-alias vim='nvim'
 alias v='nvim'
+alias vim='nvim'
+alias lg='lazygit'
 alias neofetch='fastfetch'
-alias open='xdg-open'
-alias kubectl='kubecolor'
+
 alias k='kubecolor'
+alias kubectl='kubecolor'
 alias kctx='kubectl config use-context $(kubectl config get-contexts -o name | fzf)'
+alias aws-profile='export AWS_PROFILE=$(sed -n "s/\[\(.*\)\]/\1/gp" ~/.aws/credentials | fzf)'
+
+alias open='xdg-open'
 alias suspend='echo mem | doas /usr/bin/tee /sys/power/state > /dev/null'
 alias hibernate='echo disk | doas /usr/bin/tee /sys/power/state > /dev/null'
+
+alias sudo='doas'
 alias update='doas pacman -Syu && yay -Syu'
-alias aws-profile='export AWS_PROFILE=$(sed -n "s/\[\(.*\)\]/\1/gp" ~/.aws/credentials | fzf)'
+alias yay='yay --sudo doas --sudoflags -- --save'
 
 # Env variables
 export STARSHIP_CONFIG=~/.config/starship/starship.toml
