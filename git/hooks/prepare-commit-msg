@@ -1,0 +1,26 @@
+#!/bin/bash
+
+# If not using hyprland or keepassxc, skip
+if ! command -v hyprctl &> /dev/null || ! command -v keepassxc &> /dev/null; then
+    exit 0
+fi
+
+# Check if KeePassXC database is locked by looking at the title field
+if hyprctl clients | grep -A20 "class: org.keepassxc.KeePassXC" | grep "title:" | grep -q "\[Locked\]"; then
+    hyprctl dispatch focuswindow "class:org.keepassxc.KeePassXC" &> /dev/null
+
+    # Wait for any SSH key to appear in agent
+    timeout=30
+    while [ $timeout -gt 0 ]; do
+        if ssh-add -L &> /dev/null && [ "$(ssh-add -l 2>/dev/null | wc -l)" -gt 0 ]; then
+            exit 0
+        fi
+        sleep 1
+        ((timeout--))
+    done
+
+    echo "Error: No SSH keys found in agent. Please unlock KeePassXC."
+    exit 1
+fi
+
+exit 0
