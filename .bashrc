@@ -17,8 +17,8 @@ alias neofetch='fastfetch'
 
 alias k='kubecolor'
 alias kubectl='kubecolor'
-alias kctx='kubectl config use-context $(kubectl config get-contexts -o name | fzf)'
-alias aws-profile='export AWS_PROFILE=$(sed -n "s/\[\(.*\)\]/\1/gp" ~/.aws/credentials | fzf)'
+kctx() { ctx=$(kubectl config get-contexts -o name | fzf) || return; [ -n "$ctx" ] && kubectl config use-context "$ctx"; }
+aws-profile() { p=$(sed -n "s/\[\(.*\)\]/\1/gp" ~/.aws/credentials | fzf) || return; [ -n "$p" ] && export AWS_PROFILE="$p"; }
 
 alias open='xdg-open'
 alias suspend='echo mem | doas /usr/bin/tee /sys/power/state > /dev/null'
