@@ -1,9 +1,9 @@
 #!/bin/sh
 
-DIRS="$HOME/Documents"
+DIRS="$HOME/Documents $HOME/personal $HOME/work"
 CURRENT_SESSION=$(zellij ls -n | grep '(current)' | awk '{print $1}')
 SESSION_LIST=$(zellij list-sessions -n | awk '{print $1}' | sort | grep -vx "$CURRENT_SESSION")
-DIR_PATHS=$(find $DIRS -mindepth 1 -maxdepth 1 -type d | sort)
+DIR_PATHS=$(find $DIRS -mindepth 1 -maxdepth 1 -type d -o -type l -xtype d | sort)
 
 DIRS_WITHOUT_SESSION=""
 for DIR in $DIR_PATHS; do
