@@ -3,7 +3,7 @@
 DIRS="$HOME/Documents $HOME/personal $HOME/work"
 CURRENT_SESSION=$(zellij ls -n | grep '(current)' | awk '{print $1}')
 SESSION_LIST=$(zellij list-sessions -n | awk '{print $1}' | sort | grep -vx "$CURRENT_SESSION")
-DIR_PATHS=$(find $DIRS -mindepth 1 -maxdepth 1 -type d -o -type l -xtype d | sort)
+DIR_PATHS=$(find $DIRS -mindepth 1 -maxdepth 1 -type d -o -type l -xtype d 2>/dev/null | sort)
 
 DIRS_WITHOUT_SESSION=""
 for DIR in $DIR_PATHS; do
@@ -13,6 +13,12 @@ for DIR in $DIR_PATHS; do
 "
   fi
 done
+
+if [ -z "$SESSION_LIST" ] && [ -z "$DIRS_WITHOUT_SESSION" ]; then
+  printf "\033[0;31mNo directories or sessions found\033[0m" >&2
+  sleep 3
+  exit 1
+fi
 
 CHOICE=$(
   { printf "%s\n" $SESSION_LIST
