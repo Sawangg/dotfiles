@@ -162,6 +162,10 @@ keybinds clear-defaults=true {
                 floating true
                 move_to_focused_tab true
                 close_on_exit true
+                x "10%"
+                y "10%"
+                width "80%"
+                height "80%"
             }
         }
 
