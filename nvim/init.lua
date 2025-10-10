@@ -21,7 +21,7 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
   if vim.v.shell_error ~= 0 then
     vim.api.nvim_echo({
       { "Failed to clone lazy.nvim:\n", "ErrorMsg" },
-      { out,                            "WarningMsg" },
+      { out, "WarningMsg" },
       { "\nPress any key to exit..." },
     }, true, {})
     vim.fn.getchar()
@@ -44,6 +44,7 @@ require("lazy").setup({
 require("keymaps")
 require("options")
 require("autocmds")
+require("statusline")
 -- custom.lua is a file that can be created to override or add properties based on your local environment. This file
 -- is not version controlled so each environment can add its own properties without conflict. The setup.sh script needs
 -- to be executed to create the custom.lua file and prevent a config error. An added bonus of using the setup.sh script
