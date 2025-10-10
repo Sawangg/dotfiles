@@ -51,6 +51,12 @@ function M.filetype()
   return " " .. filetype .. " "
 end
 
+function M.encoding()
+  local encoding = vim.bo.fileencoding ~= "" and vim.bo.fileencoding or vim.o.encoding
+  local format = vim.bo.fileformat
+  return string.format("%%#StatuslineEncoding# %s[%s]", encoding, format)
+end
+
 function M.filesize()
   local size = vim.fn.wordcount().bytes
   local units = { "B", "KB", "MB", "GB" }
@@ -70,6 +76,7 @@ local statusline = {
   " %F%r%m ",
   "%=",
   '%{%v:lua.require("statusline").filetype()%}',
+  '%{%v:lua.require("statusline").encoding()%}',
   '%{%v:lua.require("statusline").filesize()%}',
   "%#StatuslinePosition# %l:%c %*",
 }
@@ -85,6 +92,7 @@ vim.api.nvim_set_hl(0, "StatuslineCommandMode", { bg = colors.peach, fg = colors
 vim.api.nvim_set_hl(0, "StatuslineReplaceMode", { bg = colors.red, fg = colors.base, bold = true })
 vim.api.nvim_set_hl(0, "StatuslineTerminalMode", { bg = colors.pink, fg = colors.base, bold = true })
 vim.api.nvim_set_hl(0, "StatuslineGitBranch", { bg = colors.surface1, fg = colors.text })
+vim.api.nvim_set_hl(0, "StatuslineEncoding", { bg = colors.surface1, fg = colors.text })
 vim.api.nvim_set_hl(0, "StatuslineFilesize", { bg = colors.surface1, fg = colors.text })
 vim.api.nvim_set_hl(0, "StatuslinePosition", { bg = colors.blue, fg = colors.base, bold = true })
 
