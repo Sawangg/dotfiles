@@ -209,3 +209,4 @@ printf "%sSetting up global git hooks...%s\n" "$CYAN" "$RESET"
 git config --global core.hooksPath ~/.config/git/hooks
 
 printf "%sAll requested installs completed. Logout/login may be required for some changes.%s\n" "$GREEN" "$RESET"
+hyprctl reload
