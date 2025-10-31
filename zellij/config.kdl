@@ -170,7 +170,7 @@ keybinds clear-defaults=true {
         }
 
         // Quickly switch between sessions
-        bind "Alt f" {
+        bind "Alt s" {
             Run "bash" "-c" "$HOME/.config/zellij/session-switcher.sh" {
                 name "Session Switcher"
                 floating true
