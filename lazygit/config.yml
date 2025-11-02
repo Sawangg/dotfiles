@@ -24,3 +24,5 @@ gui:
     "*": "#b4befe"
 
 quitOnTopLevelReturn: true
+
+disableStartupPopups: true
