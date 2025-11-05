@@ -12,6 +12,7 @@ alias v='nvim'
 alias vim='nvim'
 alias lg='lazygit'
 alias neofetch='fastfetch'
+alias oc='opencode'
 
 alias k='kubecolor'
 alias kubectl='kubecolor'
@@ -20,7 +21,7 @@ aws-profile() { p=$(sed -n "s/\[\(.*\)\]/\1/gp" ~/.aws/credentials | fzf) || ret
 
 alias open='xdg-open'
 
-alias update='doas pacman -Syu && yay -Syu'
+alias update='doas pacman -Syyu && yay -Syyu'
 alias suspend='echo mem | doas /usr/bin/tee /sys/power/state > /dev/null'
 alias hibernate='echo disk | doas /usr/bin/tee /sys/power/state > /dev/null'
 
