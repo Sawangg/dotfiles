@@ -91,7 +91,7 @@ if [ "$IS_ARCH_BASED" = "true" ]; then
   printf "%sDo you want the full desktop experience? (y/N): %s" "$CYAN" "$RESET"
   read -r answer
   if [ "$answer" = "y" ] || [ "$answer" = "Y" ]; then
-    $SUDO pacman -S foot fuzzel grim slurp wl-clipboard libnotify brightnessctl playerctl hyprland hyprpicker hypridle hyprlock hyprsunset keepassxc ttf-dejavu-nerd ttf-jetbrains-mono-nerd
+    $SUDO pacman -S foot fuzzel grim slurp wl-clipboard libnotify swaync brightnessctl playerctl hyprland hyprpicker hypridle hyprlock hyprsunset keepassxc ttf-dejavu-nerd ttf-jetbrains-mono-nerd
     IS_DESKTOP="true"
   fi
 else
