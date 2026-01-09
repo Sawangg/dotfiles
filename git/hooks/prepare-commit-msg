@@ -15,7 +15,7 @@ if hyprctl clients | grep -A20 "class: org.keepassxc.KeePassXC" | grep "title:" 
         if ssh-add -L &> /dev/null && [ "$(ssh-add -l 2>/dev/null | wc -l)" -gt 0 ]; then
             exit 0
         fi
-        sleep 2
+        sleep 1
         ((timeout--))
     done
 
