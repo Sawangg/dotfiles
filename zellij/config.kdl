@@ -154,7 +154,14 @@ keybinds clear-defaults=true {
         bind "Alt -" { Resize "Decrease"; }
         bind "Alt =" "Alt +" { Resize "Increase"; }
 
-        bind "Alt q" { ToggleFloatingPanes; }
+        bind "Alt f" {
+            Run "bash" {
+                name "Scratchpad"
+                floating true
+                move_to_focused_tab true
+                close_on_exit true
+            }
+      }
 
         bind "Alt g" {
             Run "bash" "-c" "lazygit" {
