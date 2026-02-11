@@ -45,4 +45,10 @@ touch "$HOME/dotfiles/nvim/lua/custom.lua"
 stow -t ~/.config -R .
 ln -sf "$HOME/dotfiles/.bashrc" ~/.bashrc
 
+printf "${CYAN}Ensuring all scripts are executable...${RESET}\n"
+chmod +x "$HOME/dotfiles/setup.sh"
+chmod +x "$HOME/dotfiles/lean.sh"
+chmod +x "$HOME/dotfiles/zellij/session-switcher.sh"
+chmod +x "$HOME/dotfiles/git/hooks/prepare-commit-msg"
+
 printf "${GREEN}✓ Dotfiles installed successfully${RESET}\n"

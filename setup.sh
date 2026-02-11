@@ -128,6 +128,13 @@ else
     git clone https://github.com/Sawangg/dotfiles.git "$CHOSEN_PATH/dotfiles"
 fi
 
+# Ensure all scripts are executable
+printf "%sEnsuring all scripts are executable...%s\n" "$CYAN" "$RESET"
+chmod +x "$CHOSEN_PATH/dotfiles/setup.sh"
+chmod +x "$CHOSEN_PATH/dotfiles/lean.sh"
+chmod +x "$CHOSEN_PATH/dotfiles/zellij/session-switcher.sh"
+chmod +x "$CHOSEN_PATH/dotfiles/git/hooks/prepare-commit-msg"
+
 # Configure apps to better match the environment using custom.conf
 custom_hypr="$CHOSEN_PATH/dotfiles/hypr/hyprland/custom.conf"
 touch "$custom_hypr"
