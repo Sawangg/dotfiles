@@ -86,7 +86,7 @@ if [ "$IS_ARCH_BASED" = "true" ]; then
   printf "%sDo you want to install the packages to make Neovim work? (y/N): %s" "$CYAN" "$RESET"
   read -r answer
   if [ "$answer" = "y" ] || [ "$answer" = "Y" ]; then
-    $SUDO pacman -S zellij atuin bat neovim fd fzf lsd ripgrep zoxide starship lazygit nodejs
+    $SUDO pacman -S zellij atuin bat neovim fd fzf lsd ripgrep zoxide starship lazygit git-delta nodejs
   fi
   printf "%sDo you want the full desktop experience? (y/N): %s" "$CYAN" "$RESET"
   read -r answer
@@ -187,11 +187,13 @@ for user in $TARGET_USERS; do
     su - "$user" -c stow -d "$CHOSEN_PATH/dotfiles" -t "$TARGET_HOME/.config" -R .
   fi
 
-  # Setup bashrc and bash_profile symlinks
+  # Setup bashrc, bash_profile & gitconfig symlinks
   if [ -n "$SUDO" ]; then
     $SUDO -u "$user" ln -sf "$CHOSEN_PATH/dotfiles/.bashrc" "$TARGET_HOME/.bashrc"
+    $SUDO -u "$user" ln -sf "$CHOSEN_PATH/dotfiles/.gitconfig" "$TARGET_HOME/.gitconfig"
   else
     su - "$user" -c "ln -sf '$CHOSEN_PATH/dotfiles/.bashrc' '$TARGET_HOME/.bashrc'"
+    su - "$user" -c "ln -sf '$CHOSEN_PATH/dotfiles/.gitconfig' '$TARGET_HOME/.gitconfig'"
   fi
   if [ "$IS_DESKTOP" = "true" ]; then
     if [ -n "$SUDO" ]; then

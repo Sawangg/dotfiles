@@ -1,0 +1,18 @@
+[include]
+  path = ~/.config/git/catppuccin.gitconfig
+  path = ~/.config/git/user.gitconfig
+
+[credential]
+    helper = keepassxc --git-groups
+[commit]
+    gpgsign = true
+[gpg]
+    format = ssh
+[core]
+    hooksPath = ~/.config/git/hooks
+    pager = delta
+[init]
+  defaultBranch = master
+
+[delta]
+  features = catppuccin-mocha
