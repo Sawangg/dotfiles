@@ -192,7 +192,7 @@ for user in $TARGET_USERS; do
   if [ -n "$SUDO" ]; then
     $SUDO -u "$user" stow -d "$CHOSEN_PATH/dotfiles" -t "$TARGET_HOME/.config" -R .
   else
-    su - "$user" -c stow -d "$CHOSEN_PATH/dotfiles" -t "$TARGET_HOME/.config" -R .
+    su - "$user" -c "stow -d '$CHOSEN_PATH/dotfiles' -t '$TARGET_HOME/.config' -R ."
   fi
 
   # Setup bashrc, bash_profile & gitconfig symlinks
