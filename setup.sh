@@ -83,7 +83,7 @@ fi
 IS_DESKTOP="false"
 
 if [ "$IS_ARCH_BASED" = "true" ]; then
-  printf "%sDo you want to install the packages to make Neovim work? (y/N): %s" "$CYAN" "$RESET"
+  printf "%sDo you want to install the packages to make the dev environment work? (y/N): %s" "$CYAN" "$RESET"
   read -r answer
   if [ "$answer" = "y" ] || [ "$answer" = "Y" ]; then
     $SUDO pacman -S zellij atuin bat neovim fd fzf lsd ripgrep zoxide starship lazygit git-delta nodejs
@@ -133,6 +133,7 @@ printf "%sEnsuring all scripts are executable...%s\n" "$CYAN" "$RESET"
 chmod +x "$CHOSEN_PATH/dotfiles/setup.sh"
 chmod +x "$CHOSEN_PATH/dotfiles/lean.sh"
 chmod +x "$CHOSEN_PATH/dotfiles/zellij/session-switcher.sh"
+chmod +x "$CHOSEN_PATH/dotfiles/lazygit/pr.sh"
 chmod +x "$CHOSEN_PATH/dotfiles/git/hooks/prepare-commit-msg"
 
 # Configure apps to better match the environment using custom.conf
@@ -215,4 +216,7 @@ done
 IFS=$OLD_IFS
 
 printf "%sAll requested installs completed. Logout/login may be required for some changes.%s\n" "$GREEN" "$RESET"
-hyprctl reload
+
+if [ "$IS_DESKTOP" = "true" ]; then
+  hyprctl reload
+fi
