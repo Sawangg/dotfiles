@@ -157,7 +157,7 @@ keybinds clear-defaults=true {
         bind "Alt f" { ToggleFloatingPanes; }
 
         bind "Alt g" {
-            Run "bash" "-c" "lazygit" {
+            Run "bash" "-c" "$HOME/.config/zellij/lazygit.sh" {
                 name "Git"
                 floating true
                 move_to_focused_tab true

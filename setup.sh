@@ -132,8 +132,8 @@ fi
 printf "%sEnsuring all scripts are executable...%s\n" "$CYAN" "$RESET"
 chmod +x "$CHOSEN_PATH/dotfiles/setup.sh"
 chmod +x "$CHOSEN_PATH/dotfiles/lean.sh"
+chmod +x "$CHOSEN_PATH/dotfiles/zellij/lazygit.sh"
 chmod +x "$CHOSEN_PATH/dotfiles/zellij/session-switcher.sh"
-chmod +x "$CHOSEN_PATH/dotfiles/lazygit/pr.sh"
 chmod +x "$CHOSEN_PATH/dotfiles/git/hooks/prepare-commit-msg"
 
 # Configure apps to better match the environment using custom.conf
