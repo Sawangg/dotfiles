@@ -215,6 +215,8 @@ for user in $TARGET_USERS; do
 done
 IFS=$OLD_IFS
 
+bat cache --build
+
 printf "%sAll requested installs completed. Logout/login may be required for some changes.%s\n" "$GREEN" "$RESET"
 
 if [ "$IS_DESKTOP" = "true" ]; then
