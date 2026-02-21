@@ -13,7 +13,7 @@ theme = Catppuccin Mocha
 background = 11111b
 background-opacity = 0.8
 
-custom-shader = shaders/cursor-smear.glsl
+custom-shader = shaders/cursor-tail.glsl
 
 keybind = clear
 keybind = ctrl+v=paste_from_clipboard
