@@ -9,6 +9,8 @@
     pager = delta
 [init]
   defaultBranch = master
+[pull]
+  rebase = true
 
 [delta]
   features = catppuccin-mocha
