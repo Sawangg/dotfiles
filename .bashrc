@@ -32,6 +32,11 @@ if command -v doas >/dev/null 2>&1; then
 fi
 
 # Env variables
+export VISUAL=nvim
+export EDITOR=nvim
+export DIFFPROG="nvim -d"
+export MANPAGER="nvim +Man!"
+export MANWIDTH=999
 export STARSHIP_CONFIG=~/.config/starship/starship.toml
 export FZF_DEFAULT_OPTS=" \
   --color=bg+:#313244,spinner:#F5E0DC,hl:#F38BA8 \
