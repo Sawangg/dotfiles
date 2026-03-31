@@ -27,7 +27,7 @@ fi
 if command -v apt-get > /dev/null 2>&1; then
     printf "${CYAN}Using package manager: ${BOLD}apt-get${RESET}\n"
     $SUDO apt-get update
-    $SUDO apt-get install -y stow fzf ripgrep starship zoxide neovim lazygit git-delta nodejs
+    $SUDO apt-get install -y stow fzf ripgrep starship zoxide neovim tree-sitter-cli lazygit git-delta nodejs
 elif command -v apk > /dev/null 2>&1; then
     printf "${CYAN}Using package manager: ${BOLD}apk${RESET}\n"
     $SUDO apk update
