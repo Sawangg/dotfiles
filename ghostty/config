@@ -8,6 +8,7 @@ font-family = monospace
 font-size = 12
 
 mouse-hide-while-typing = true
+app-notifications = no-clipboard-copy
 
 theme = Catppuccin Mocha
 background = 11111b
