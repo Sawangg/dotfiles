@@ -1,14 +1,10 @@
 {
   "$schema": "https://opencode.ai/config.json",
-  "theme": "custom",
-  "keybinds": {
-    "input_paste": "alt+v"
-  },
   "permission": {
     "external_directory": {
       "~/.cargo/**": "allow",
       "~/work/**": "allow",
       "~/personal/**": "allow"
-    },
+    }
   }
 }
