@@ -91,20 +91,20 @@ Scope {
                 // Icon ── track ── icon
                 Row {
                     width: parent.width
-                    height: 18
+                    height: 24
                     spacing: 8
 
                     Text {
-                        width: 16
+                        width: 22
                         anchors.verticalCenter: parent.verticalCenter
                         text: card.muted ? "🔇" : (card.volume < 0.33 ? "🔈" : "🔉")
-                        font.pixelSize: 13
+                        font.pixelSize: 18
                     }
 
                     // Track
                     Item {
                         id: track
-                        width: parent.width - 48
+                        width: parent.width - 60
                         height: 6
                         anchors.verticalCenter: parent.verticalCenter
 
@@ -135,10 +135,10 @@ Scope {
                     }
 
                     Text {
-                        width: 16
+                        width: 22
                         anchors.verticalCenter: parent.verticalCenter
                         text: "🔊"
-                        font.pixelSize: 13
+                        font.pixelSize: 18
                     }
                 }
             }
