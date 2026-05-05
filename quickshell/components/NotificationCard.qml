@@ -47,7 +47,7 @@ Rectangle {
         if (notification.resident || notification.expireTimeout === 0)
             return 0
         if (notification.expireTimeout > 0)
-            return Math.round(notification.expireTimeout * 1000)
+            return notification.expireTimeout
         return 5000
     }
 
