@@ -1,0 +1,13 @@
+require("hyprland.exec")
+require("hyprland.env")
+require("hyprland.monitor")
+require("hyprland.general")
+require("hyprland.misc")
+require("hyprland.input")
+require("hyprland.animation")
+require("hyprland.theme")
+require("hyprland.layout")
+require("hyprland.rules")
+require("hyprland.binds")
+
+require("hyprland.custom")

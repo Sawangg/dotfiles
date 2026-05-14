@@ -1,0 +1,7 @@
+hl.config({
+  dwindle = {
+    preserve_split = true,
+    smart_resizing = false,
+    force_split = 2, -- every new split spawns on the right
+  },
+})

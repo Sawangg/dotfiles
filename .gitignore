@@ -1,4 +1,3 @@
-hypr/hyprland/custom.conf
+hypr/hyprland/custom.lua
 nvim/lua/custom.lua
 git/user.gitconfig
-

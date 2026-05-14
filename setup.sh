@@ -136,21 +136,21 @@ chmod +x "$CHOSEN_PATH/dotfiles/zellij/lazygit.sh"
 chmod +x "$CHOSEN_PATH/dotfiles/zellij/session-switcher.sh"
 chmod +x "$CHOSEN_PATH/dotfiles/git/hooks/prepare-commit-msg"
 
-# Configure apps to better match the environment using custom.conf
-custom_hypr="$CHOSEN_PATH/dotfiles/hypr/hyprland/custom.conf"
+# Configure apps to better match the environment using custom.lua
+custom_hypr="$CHOSEN_PATH/dotfiles/hypr/hyprland/custom.lua"
 touch "$custom_hypr"
 custom_nvim="$CHOSEN_PATH/dotfiles/nvim/lua/custom.lua"
 touch "$custom_nvim"
 
 if lsmod | grep -i nvidia > /dev/null; then
-    printf "%sNVIDIA GPU detected. Adding NVIDIA configuration to Hyprland custom.conf.%s\n" "$GREEN" "$RESET"
-    append_line "source = ~/.config/hypr/hyprland/nvidia.conf" "$custom_hypr"
+    printf "%sNVIDIA GPU detected. Adding NVIDIA configuration to Hyprland custom.lua.%s\n" "$GREEN" "$RESET"
+    append_line "require(\"hyprland.nvidia\")" "$custom_hypr"
 fi
 
 printf "%sDo you wish to use the French AZERTY keyboard layout as the default (y/N): %s" "$CYAN" "$RESET"
 read -r answer
 if [ "$answer" = "y" ] || [ "$answer" = "Y" ]; then
-    append_line "source = ~/.config/hypr/hyprland/azerty.conf" "$custom_hypr"
+    append_line "require(\"hyprland.azerty\")" "$custom_hypr"
     append_line "require(\"azerty\")" "$custom_nvim"
 fi
 

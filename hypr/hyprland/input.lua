@@ -1,0 +1,14 @@
+hl.config({
+  input = {
+    kb_layout = "us,fr",
+    kb_options = "grp:win_space_toggle,caps:escape",
+
+    numlock_by_default = true,
+
+    follow_mouse = 1,
+    force_no_accel = true,
+
+    repeat_rate = 35,
+    repeat_delay = 200,
+  },
+})
