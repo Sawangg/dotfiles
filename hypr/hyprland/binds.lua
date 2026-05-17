@@ -3,7 +3,7 @@ local mod = "SUPER"
 
 -- Programs --
 hl.bind(mod .. " + T", hl.dsp.exec_cmd(programs.terminal))
-hl.bind(mod .. " + C", hl.dsp.window.kill())
+hl.bind(mod .. " + C", hl.dsp.window.close())
 hl.bind(mod .. " + R", hl.dsp.exec_cmd(programs.menu))
 hl.bind(mod .. " + B", hl.dsp.exec_cmd(programs.browser))
 hl.bind(mod .. " + SHIFT + B", hl.dsp.exec_cmd(programs.browser .. " -private-window"))
@@ -22,28 +22,28 @@ end
 
 -- Move focus with vim keys or arrow keys --
 for _, bind in ipairs({
-  { "left", "l" },
-  { "H", "l" },
-  { "down", "d" },
-  { "J", "d" },
-  { "up", "u" },
-  { "K", "u" },
+  { "left",  "l" },
+  { "H",     "l" },
+  { "down",  "d" },
+  { "J",     "d" },
+  { "up",    "u" },
+  { "K",     "u" },
   { "right", "r" },
-  { "L", "r" },
+  { "L",     "r" },
 }) do
   hl.bind(mod .. " + " .. bind[1], hl.dsp.focus({ direction = bind[2] }))
 end
 
 -- Resize active window with shift + vim keys or arrow keys --
 for _, bind in ipairs({
-  { "left", -20, 0 },
-  { "H", -20, 0 },
-  { "down", 0, 20 },
-  { "J", 0, 20 },
-  { "up", 0, -20 },
-  { "K", 0, -20 },
-  { "right", 20, 0 },
-  { "L", 20, 0 },
+  { "left",  -20, 0 },
+  { "H",     -20, 0 },
+  { "down",  0,   20 },
+  { "J",     0,   20 },
+  { "up",    0,   -20 },
+  { "K",     0,   -20 },
+  { "right", 20,  0 },
+  { "L",     20,  0 },
 }) do
   hl.bind(
     mod .. " + SHIFT + " .. bind[1],
