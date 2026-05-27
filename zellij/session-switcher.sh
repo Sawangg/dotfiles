@@ -34,9 +34,9 @@ if [ -z "$CHOICE" ]; then
 fi
 
 if echo "$SESSION_LIST" | grep -qx "$CHOICE"; then
-  zellij pipe --plugin https://github.com/mostafaqanbaryan/zellij-switch/releases/download/0.2.1/zellij-switch.wasm -- "-s=${CHOICE} -l custom"
+  zellij action switch-session "$CHOICE" --layout custom
 else
   SESSION_TITLE=$(basename "$CHOICE")
   zellij --session "$SESSION_TITLE" --cwd "$CHOICE" --detach
-  zellij pipe --plugin https://github.com/mostafaqanbaryan/zellij-switch/releases/download/0.2.1/zellij-switch.wasm -- "-s=${SESSION_TITLE} -c=${CHOICE} -l custom"
+  zellij action switch-session "$SESSION_TITLE" --cwd "$CHOICE" --layout custom
 fi
