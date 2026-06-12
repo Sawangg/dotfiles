@@ -89,12 +89,12 @@ hl.bind(
 hl.bind("XF86ScreenSaver", hl.dsp.exec_cmd([[hyprctl dispatch dpms off]]), { locked = true })
 hl.bind(
   "XF86MonBrightnessDown",
-  hl.dsp.exec_cmd([[brightnessctl set 5%- && notify-send -t 2000 "Brightness" "$(brightnessctl -m | cut -d, -f4)"]]),
+  hl.dsp.exec_cmd([[brightnessctl set 5%-]]),
   { repeating = true }
 )
 hl.bind(
   "XF86MonBrightnessUp",
-  hl.dsp.exec_cmd([[brightnessctl set +5% && notify-send -t 2000 "Brightness" "$(brightnessctl -m | cut -d, -f4)"]]),
+  hl.dsp.exec_cmd([[brightnessctl set +5%]]),
   { repeating = true }
 )
 
