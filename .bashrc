@@ -18,6 +18,33 @@ alias k='kubecolor'
 alias kubectl='kubecolor'
 kctx() { ctx=$(kubectl config get-contexts -o name | fzf) || return; [ -n "$ctx" ] && kubectl config use-context "$ctx"; }
 aws-profile() { p=$(sed -n "s/\[\(.*\)\]/\1/gp" ~/.aws/credentials | fzf) || return; [ -n "$p" ] && export AWS_PROFILE="$p"; }
+audioctx() {
+  local status_output=$(wpctl status)
+  local current_default=$(echo "$status_output" | awk '
+    /Sinks:/{f=1}
+    /Sources:/{f=0}
+    f && /\*/ { match($0, /[0-9]+\./); print substr($0, RSTART+RLENGTH); exit }
+  ')
+  local selected_sink=$(echo "$status_output" | awk '
+    /Sinks:/{f=1}
+    /Sources:/{f=0}
+    f && /\./ && !/\*/ {
+      match($0, /[0-9]+\./)
+      print substr($0, RSTART, RLENGTH-1) "\t" substr($0, RSTART+RLENGTH)
+    }
+  ' | fzf --header "Current: $current_default" | cut -f1)
+  [ -n "$selected_sink" ] || return
+  wpctl set-default "$selected_sink"
+  local sink_name=$(wpctl list audio sinks | awk -F'\t' '$1=="'"$selected_sink"'" {print $2}')
+  local sink_ids=$(wpctl list audio sinks | awk -F'\t' '{print $1}' | jq -R tonumber | jq -s -c .)
+  for stream_id in $(pw-dump Link 2>/dev/null | jq -r --argjson sink_ids "$sink_ids" '
+    .[]? | (.info?.props?["link.input.node"] // empty) as $in
+    | select(($sink_ids | index($in)) != null)
+    | .info?.props?["link.output.node"]
+  ' | sort -u); do
+    pw-metadata -n default "$stream_id" target.object "$sink_name" >/dev/null 2>&1
+  done
+}
 
 alias open='xdg-open'
 
