@@ -244,7 +244,7 @@ plugins {
 
     autolock location="https://github.com/fresh2dev/zellij-autolock/releases/latest/download/zellij-autolock.wasm" {
         is_enabled true
-        triggers "nvim|vim|fzf|zoxide|atuin|opencode|lazygit"
+        triggers "nvim|vim|fzf|zoxide|atuin|opencode|pi|lazygit"
         reaction_seconds "0.1"
     }
 }
