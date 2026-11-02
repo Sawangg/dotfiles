@@ -1,0 +1,45 @@
+{
+  "lastChangelogVersion": "1.5.0",
+  "theme": "catppuccin-mocha",
+  "defaultProvider": "openrouter",
+  "defaultModel": "deepseek/deepseek-v4.1-flash-1017",
+  "defaultThinkingLevel": "low",
+  "subagents": {
+    "defaultModel": "openrouter/deepseek/deepseek-v4.1-flash-1017",
+    "defaultThinking": "low",
+    "modelScope": {
+      "enforce": true,
+      "strict": true,
+      "allow": [
+        "inherit",
+        "openrouter/deepseek/deepseek-v4.1-flash-1017"
+      ]
+    },
+    "agentOverrides": {
+      "worker": {
+        "thinking": "low"
+      },
+      "reviewer": {
+        "thinking": "high"
+      },
+      "researcher": {
+        "thinking": "low"
+      },
+      "oracle": {
+        "thinking": "low"
+      },
+      "evidence-auditor": {
+        "thinking": "low"
+      }
+    }
+  },
+  "packages": [
+    "npm:pi-web-access",
+    "npm:pi-subagents"
+  ],
+  "hideThinkingBlock": true,
+  "extensionChangelogVersions": {
+    "{\"source\":\"npm:pi-web-access\",\"scope\":\"user\"}": "0.46.0",
+    "{\"source\":\"npm:pi-subagents\",\"scope\":\"user\"}": "0.84.0"
+  }
+}

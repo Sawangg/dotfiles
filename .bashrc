@@ -65,6 +65,7 @@ export DIFFPROG="nvim -d"
 export MANPAGER="nvim +Man!"
 export MANWIDTH=999
 export STARSHIP_CONFIG=~/.config/starship/starship.toml
+export PI_CODING_AGENT_DIR="$HOME/.config/pi/agent"
 export FZF_DEFAULT_OPTS=" \
   --color=bg+:#313244,spinner:#F5E0DC,hl:#F38BA8 \
   --color=fg:#CDD6F4,header:#F38BA8,info:#CBA6F7,pointer:#F38BA8 \
