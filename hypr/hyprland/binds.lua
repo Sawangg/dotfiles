@@ -86,7 +86,7 @@ hl.bind(
 )
 
 -- Screen brightness --
-hl.bind("XF86ScreenSaver", hl.dsp.exec_cmd([[hyprctl dispatch dpms off]]), { locked = true })
+hl.bind("XF86ScreenSaver", hl.dsp.dpms({ action = "off" }), { locked = true })
 hl.bind(
   "XF86MonBrightnessDown",
   hl.dsp.exec_cmd([[brightnessctl set 5%-]]),
@@ -124,20 +124,13 @@ hl.bind(mod .. " + F10", hl.dsp.pass({ window = [[class:^(com\.obsproject\.Studi
 hl.bind(mod .. " + F11", hl.dsp.pass({ window = [[class:^(com\.obsproject\.Studio)$]] }))
 
 -- Zoom --
-hl.bind(
-  mod .. " + minus",
-  hl.dsp.exec_cmd(
-    [[hyprctl getoption cursor:zoom_factor | grep float | awk '{ if($2!=1) system("hyprctl keyword cursor:zoom_factor " $2 - 0.1) }' && hyprctl getoption cursor:zoom_factor | grep float | awk '{print $2}']]
-  ),
-  { repeating = true }
-)
-hl.bind(
-  mod .. " + equal",
-  hl.dsp.exec_cmd(
-    [[hyprctl getoption cursor:zoom_factor | grep float | awk '{ system("hyprctl keyword cursor:zoom_factor " $2 + 0.1) }' && hyprctl getoption cursor:zoom_factor | grep float | awk '{print $2}']]
-  ),
-  { repeating = true }
-)
+local function zoom_by(delta)
+  local factor = hl.get_config("cursor:zoom_factor")
+  hl.config({ cursor = { zoom_factor = math.min(10, math.max(1, factor + delta)) } })
+end
+
+hl.bind(mod .. " + minus", function() zoom_by(-0.1) end, { repeating = true })
+hl.bind(mod .. " + equal", function() zoom_by(0.1) end, { repeating = true })
 
 -- Notify when keyboard layout changes --
 hl.bind(
