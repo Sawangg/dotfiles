@@ -13,6 +13,7 @@ app-notifications = no-clipboard-copy
 theme = Catppuccin Mocha
 background = 11111b
 background-opacity = 0.8
+background-blur = true
 
 custom-shader = shaders/cursor-warp.glsl
 
