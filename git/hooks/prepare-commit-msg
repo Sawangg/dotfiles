@@ -7,7 +7,7 @@ fi
 
 # Check if KeePassXC database is locked by looking at the title field
 if hyprctl clients | grep -A20 "class: org.keepassxc.KeePassXC" | grep "title:" | grep -q "\[Locked\]"; then
-    hyprctl dispatch focuswindow "class:org.keepassxc.KeePassXC" &> /dev/null
+    hyprctl dispatch 'hl.dsp.focus({ window = "class:org.keepassxc.KeePassXC" })' &> /dev/null
 
     # Wait for any SSH keys to appear in agent
     timeout=30
