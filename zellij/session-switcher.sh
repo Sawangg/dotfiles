@@ -37,6 +37,6 @@ if echo "$SESSION_LIST" | grep -qx "$CHOICE"; then
   zellij action switch-session "$CHOICE" --layout custom
 else
   SESSION_TITLE=$(basename "$CHOICE")
-  zellij --session "$SESSION_TITLE" --cwd "$CHOICE" --detach
+  ( cd "$CHOICE" || exit 1; zellij attach --create-background --create "$SESSION_TITLE" )
   zellij action switch-session "$SESSION_TITLE" --cwd "$CHOICE" --layout custom
 fi
