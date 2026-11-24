@@ -22,24 +22,20 @@ hl.monitor({
 })
 
 local function desired_scale(monitor)
-  local desired = scale_by_output[monitor.name]
-  if desired then
-    return desired
+  if monitor.is_mirror then
+    return nil
   end
 
   if monitor.width == 1920 and monitor.height == 1080 then
     return 1
   end
-  return 1.25
+
+  return scale_by_output[monitor.name] or 1.25
 end
 
 local function apply_scale(monitor)
-  if monitor.is_mirror then
-    return
-  end
-
   local desired = desired_scale(monitor)
-  if monitor.scale ~= desired then
+  if desired and monitor.scale ~= desired then
     hl.monitor({ output = monitor.name, scale = desired })
   end
 end
