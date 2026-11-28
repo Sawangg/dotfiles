@@ -1,12 +1,20 @@
 -- Per-monitor scale.
 local scale_by_output = {
   ["DP-1"] = 1.25,
+  ["eDP-1"] = 1.25,
 }
+
+hl.monitor({
+  output = "eDP-1",
+  mode = "preferred",
+  position = "0x0",
+  scale = scale_by_output["eDP-1"],
+})
 
 hl.monitor({
   output = "DP-1",
   mode = "preferred",
-  position = "0x0",
+  position = "auto-right",
   scale = scale_by_output["DP-1"],
   bitdepth = 10,
   supports_wide_color = true,
@@ -17,7 +25,6 @@ hl.monitor({
   output = "",
   mode = "preferred",
   position = "auto",
-  scale = 1,
   mirror = "DP-1",
 })
 
